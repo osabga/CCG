@@ -41,11 +41,11 @@ En Cherry Consulting Group aspiramos a ser líderes reconocidos a nivel global e
 
 ## Equipo
 Contamos con un equipo altamente calificado y comprometido, compuesto por expertos en diversas áreas, incluyendo:
-- Oskar Abraham Sandoval Gracia, Product Manager 
-- Adrian Tadeo Barrera Almanza , Product Owner 
-- Gilberto Valdez Arreola, Quality Assurance Analyst 
-- Jaime Cabrera Flores, UI/UX Desinger 
-- Carolina Lara Suárez, Senior Developer. 
+- Oskar Abraham Sandoval Gracia, Product Manager / Tester
+- Adrian Tadeo Barrera Almanza , Product Owner / Front Developer
+- Gilberto Valdez Arreola, Backend Developer
+- Jaime Cabrera Flores, Backend Developer
+- Carolina Lara Suárez, UI Designer / Front Developer. 
 
 ¡Gracias por interesarte en Cherry Consulting Group!
 
