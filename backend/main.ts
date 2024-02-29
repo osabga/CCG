@@ -13,7 +13,7 @@ const app = express()
 app.listen(3000)
 
 
-mongoose.connect(process.env.DATABASE_URL).then(console.log("connected!!!###"))
+//mongoose.connect(process.env.DATABASE_URL).then(console.log("connected!!!###"))
 
 
 app.get("/", (req: any,res: any) => { console.log(" helloo "); res.send("123")}  )
