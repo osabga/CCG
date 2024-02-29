@@ -20,4 +20,4 @@ app.get("/", (req: any,res: any) => { console.log(" helloo "); res.send("123")} 
 
 app.use("/users", userRouter)
 
-console.log(process.env.DATABASE_URL)
+console.log(process.env.DATABASE_URL) 
