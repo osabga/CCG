@@ -17,8 +17,6 @@ const resetDB = async () => {
       .then(() => User.deleteMany({}))
       .then(() => Categoria.deleteMany({}))
       .then(() => console.log("base de datos reiniciada"));
-        
-      
       //const cat= new Categoria({tipoA:"General", tipoB:"Empresa", tipoC: "productoB"})
       //await cat.save()
       //const pregunta_test = new Pregunta({ pregunta: "que dia es hoy?", respuesta: "domingoooo", categoria: cat });
