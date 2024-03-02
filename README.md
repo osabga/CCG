@@ -2,7 +2,7 @@
   Cherry Consulting Group
 </h1>
 <p align="center">
-  <img src="https://postimg.cc/jC2BKddt" alt="Alt Text">
+  <img src="https://i.postimg.cc/PfQHWPgp/Screenshot-2024-03-02-at-12-42-34-p-m.png" alt="Alt Text">
 </p>
 
 Cherry Consulting Group, CCG es una empresa especializada en el análisis, planeación y desarrollo de proyectos de Software,  El mayor reto moderno es el desarrollo de una aplicación, cientos de incertidumbres y de inversiones desarrollando algo que no sabemos si va a funcionar, por eso en CCG somos especialistas en la minimización de riesgos en desarrollo de Software. 
