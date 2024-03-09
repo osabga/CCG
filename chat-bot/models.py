@@ -1,41 +1,44 @@
 import uuid
 from typing import Optional
 from pydantic import BaseModel, Field
+from typing import List
 
 
-class Prueba(BaseModel):
+class User(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()), alias="_id")
-    title: str = Field(...)
-
-
-class Book(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()), alias="_id")
-    title: str = Field(...)
-    author: str = Field(...)
-    synopsis: str = Field(...)
+    name: str = Field(...)
+    email: str = Field(...)
+    country: str = Field(...)
+    state: str = Field(...)
+    preguntasId: List[str] = Field([], description="Lista de IDs de preguntas asociadas al usuario")
 
     class Config:
-        populate_by_name = True
         json_schema_extra = {
             "example": {
                 "_id": "066de609-b04a-4b30-b46c-32537c7f1f6e",
-                "title": "Don Quixote",
-                "author": "Miguel de Cervantes",
-                "synopsis": "..."
+                "name": "Juan",
+                "email": "juan@gmail.com",
+                "country": "Mexico",
+                "state": "CDMX",
+                "preguntasId": ["066de609-b04a-4b30-b46c-32537c7f1f6e",
+                                "066de609-b04a-4b30-b46c-32537c7f1f6e"]
             }
         }
 
 
-class BookUpdate(BaseModel):
-    title: Optional[str]
-    author: Optional[str]
-    synopsis: Optional[str]
+class Question(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()), alias="_id")
+    question: str = Field(...)
+    answer: str = Field(...)
+    userId: str = Field(...)
 
     class Config:
         json_schema_extra = {
             "example": {
-                "title": "Don Quixote",
-                "author": "Miguel de Cervantes",
-                "synopsis": "Don Quixote is a Spanish novel by Miguel de Cervantes..."
+                "_id": "066de609-b04a-4b30-b46c-32537c7f1f6e",
+                "question": "What is NEORIS?",
+                "answer": "",
+                "userId": "066de609-b04a-4b30-b46c-32537c7f1f6e"
             }
         }
+
