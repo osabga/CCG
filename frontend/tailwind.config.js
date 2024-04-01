@@ -2,7 +2,18 @@
 export default {
   content: ["./src/**/*.{html,tsx,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        darkblue: {
+          DEFAULT: '#141727',
+          'light': '#2C3262',
+        },
+      },
+      // Si aún no tienes una configuración de gradiente, la puedes agregar así:
+      backgroundImage: {
+        'gradient-to-b': 'linear-gradient(180deg, #141727 0%, #2C3262 52.41%);',
+      },
+    },
   },
   plugins: [
     function({ addUtilities }) {
