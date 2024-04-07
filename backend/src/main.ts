@@ -9,6 +9,7 @@ import Categoria from "./Schema/categoria";
 dotenv.config();
 const app = express()
 app.listen(3000)
+app.use(express.json());
 
 //Funcion de pruebas
 const resetDB = async () => {
@@ -17,19 +18,16 @@ const resetDB = async () => {
       .then(() => User.deleteMany({}))
       .then(() => Categoria.deleteMany({}))
       .then(() => console.log("base de datos reiniciada"));
-      //const cat= new Categoria({tipoA:"General", tipoB:"Empresa", tipoC: "productoB"})
-      //await cat.save()
+      const cat= new Categoria({tipoA:"General", tipoB:"Empresa", tipoC: "productoA"})
+      await cat.save()
       //const pregunta_test = new Pregunta({ pregunta: "que dia es hoy?", respuesta: "domingoooo", categoria: cat });
       //await pregunta_test.save().then(()=>{console.log("agregado pregunta con categoria")});
-      
-      
     } catch (error) {
       console.error('error en base de datos', error);
     } 
   }; 
 
   
-
 
 
 mongoose.connect(process.env.DATABASE_URL)
