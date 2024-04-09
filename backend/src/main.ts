@@ -32,7 +32,7 @@ const resetDB = async () => {
 
 mongoose.connect(process.env.DATABASE_URL)
   .then(() => console.log("mongo connected :)"))
-  .then(resetDB())
+  //.then(resetDB())
   .catch((error:any) => console.log("mongo error :(", error));
 
 app.get("/", (req: any,res: any) => { console.log(" helloo "); res.send("my api endpoint")}  )
