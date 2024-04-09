@@ -1,5 +1,11 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
+
+interface Categoria extends mongoose.Document{
+    tipoA: string,
+    tipoB: string,
+    tipoC: string
+}
 
 enum tipo1 {
     General = "General",
@@ -36,4 +42,7 @@ const categoriaSchema = new mongoose.Schema({
     }
 });
 
+
+
+export {Categoria}
 export default mongoose.model("Categoria", categoriaSchema);

@@ -29,8 +29,7 @@ export async function postUser(req:Request,res:Response){
     const body = req.body as { name?: string; email?: string; password?: string };
     
     if (!body || !body.name || !body.email || !body.password) {
-        return res.status(400).json({ message: 'datos faltantes!'});
-        
+        return res.status(400).json({ message: 'datos faltantes!'}); 
     }
     
     const my_user = new User({
@@ -44,7 +43,7 @@ export async function postUser(req:Request,res:Response){
     return res.status(201).json(savedUser);
     }
     catch(error){
-        console.error("no user in db :(", error)
+        console.error("user not posted in db :(", error)
     }
 }
 

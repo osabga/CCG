@@ -5,6 +5,13 @@ import User from "./Schema/user";
 import dotenv from 'dotenv';
 import Pregunta from "./Schema/pregunta";
 import Categoria from "./Schema/categoria";
+import { preguntasRouter } from "./Routes/preguntas";
+
+const colors = {
+  reset: "\x1b[0m",
+  green : "\x1b[32;1m",
+  red:"\x1b[31;1m"
+};
 
 dotenv.config();
 const app = express()
@@ -31,9 +38,12 @@ const resetDB = async () => {
 
 
 mongoose.connect(process.env.DATABASE_URL)
-  .then(() => console.log("mongo connected :)"))
+  .then(() => console.log(colors.green + "Connected!" + colors.reset))
+  .then(console.log("regular"))
   //.then(resetDB())
-  .catch((error:any) => console.log("mongo error :(", error));
+  .catch((error:any) => console.log(colors.red + "DB error " + colors.reset, error));
+
 
 app.get("/", (req: any,res: any) => { console.log(" helloo "); res.send("my api endpoint")}  )
 app.use("/users", userRouter)
+app.use("/preguntas", preguntasRouter)

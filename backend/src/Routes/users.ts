@@ -1,6 +1,6 @@
 
-import {postUser} from "../controllers/users"
-import {getUser} from "../controllers/users"
+import {postUser} from "../Controllers/users"
+import {getUser} from "../Controllers/users"
 
 // done basic means it works but needs more validations
 // done premium means fully done
