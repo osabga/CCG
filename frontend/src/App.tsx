@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import RestorePassword from './pages/RestorePassword'
+import AddQuestion from './pages/AddQuestion'
 
 function App() {
 
@@ -12,8 +13,9 @@ function App() {
           <Routes>
             <Route path='/' element={ <Home/> }/>
             <Route path='/Signup' element={ <Signup/> }/>
-            <Route path='/login' element={ <Login/> }/>
+            <Route path='/Login' element={ <Login/> }/>
             <Route path='/RestorePassword' element={ <RestorePassword/> }/>
+            <Route path='/AddQuestion' element={ <AddQuestion/> }/>
           </Routes>
         </Router>
     </div>
