@@ -1,5 +1,6 @@
 import Header from "../components/Header"
 import LoginImage from '../assets/Login_image.png'
+import { Link } from "react-router-dom"
 
 const Login = () => {
   return (
@@ -50,12 +51,14 @@ const Login = () => {
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ or ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           </p>
           <div>
+            <Link to='/Signup'>
               <button
                 type="submit"
                 className="mb-4 mt-4 w-full p-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded font-bold hover:opacity-90 transition-opacity duration-300"
               >
                 Create Account
               </button>
+            </Link>
             </div>
             <div>
               <button
