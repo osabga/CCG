@@ -22,7 +22,7 @@ os.environ[
 # Load the text from the PDF and save it to a .txt file
 def extract_text_from_pdf(pdf_path):
     text = extract_text(pdf_path)
-    with open('Attention_is_all_you_need.txt', 'w', encoding='utf-8') as f:
+    with open('NEORIS.txt', 'w', encoding='utf-8') as f:
         f.write(text)
 
 
@@ -39,7 +39,7 @@ def train_model():
     
     Helpful Answer:"""
 
-    loader = TextLoader("Attention_is_all_you_need.txt", encoding='utf-8')
+    loader = TextLoader("NEORIS.txt", encoding='utf-8')
 
     docs = loader.load()
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000,
@@ -71,4 +71,5 @@ def model_response(question):
 
 
 if __name__ == '__main__':
-    print(model_response("De que trata el documento?"))
+    extract_text_from_pdf("NEORIS.pdf")
+    print(model_response("What is NEORIS?"))
