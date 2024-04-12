@@ -8,6 +8,7 @@ interface FormData {
   lastName: string;
   email: string;
   password: string;
+  password_confirm: string;
 }
 
 
@@ -16,7 +17,8 @@ const Signup = () => {
     firstName: '',
     lastName: '',
     email: '',
-    password: ''
+    password: '',
+    password_confirm: ''
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,17 +34,24 @@ const Signup = () => {
     const fullName = `${formData.firstName} ${formData.lastName}`;
     console.log(`${formData.firstName} ${formData.lastName}`, formData.email, formData.password)
 
-    try {
-      const response = await axios.post('http://localhost:3000/', {
-        name: fullName,
-        email: formData.email,
-        password: formData.password
-      });
+    if (formData.password == formData.password_confirm) {
 
-      console.log(response.data);
-    } catch (error) {
-      console.error('There was an error sending the data', error);
+      try {
+        const response = await axios.post('http://localhost:3000/', {
+          name: fullName,
+          email: formData.email,
+          password: formData.password
+        });
+  
+        console.log(response.data);
+      } catch (error) {
+        console.error('There was an error sending the data', error);
+      }
+
+    }else {
+      alert('Password doest match with verification')
     }
+
   };
 
 
@@ -100,6 +109,7 @@ const Signup = () => {
             </div>
             <div>
               <input
+                name="password_confirm"
                 type="password"
                 placeholder="Repeat your Password"
                 className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
