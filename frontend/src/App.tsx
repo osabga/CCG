@@ -4,6 +4,8 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import RestorePassword from './pages/RestorePassword'
 import AddQuestion from './pages/AddQuestion'
+import EditQuestions from './pages/EditQuestions'
+import ChatPage from './pages/ChatPage'
 
 function App() {
 
@@ -16,6 +18,8 @@ function App() {
             <Route path='/Login' element={ <Login/> }/>
             <Route path='/RestorePassword' element={ <RestorePassword/> }/>
             <Route path='/AddQuestion' element={ <AddQuestion/> }/>
+            <Route path='/EditQuestion' element={ <EditQuestions/> }/>
+            <Route path='/ChatPage' element={ <ChatPage/> }/>
           </Routes>
         </Router>
     </div>

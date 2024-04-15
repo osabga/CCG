@@ -11,7 +11,10 @@ export default {
       },
       // Si aún no tienes una configuración de gradiente, la puedes agregar así:
       backgroundImage: {
-        'gradient-to-b': 'linear-gradient(180deg, #141727 0%, #2C3262 52.41%);',
+        'gradient-to-b': 'linear-gradient(180deg, #602EA6 0%, #2C3262 52.41%);',
+        'gradient-to-c': 'linear-gradient(180deg, #C977D6 0%, #2C3262 52.41%);',
+        'gradient-to-d': 'linear-gradient(90deg, #141727 0%, #2C3262 52.41%);',
+
       },
     },
   },
