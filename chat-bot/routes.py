@@ -84,6 +84,11 @@ async def get_responses(user_id: str, db: MongoClient = Depends(get_database)):
 
 @router.post("/upload/")
 async def upload_file(file: UploadFile):
+    """
+    Method to upload a file to the server
+    :param file: Document to be uploaded
+    :return: A message with the filename
+    """
     if not file.filename.endswith('.pdf'):
         raise HTTPException(status_code=400,
                             detail="File must be a PDF file")
@@ -93,3 +98,17 @@ async def upload_file(file: UploadFile):
         # Shutil is used to copy the file from the request to the buffer
         shutil.copyfileobj(file.file, buffer)
     return {"filename": file.filename}
+
+
+@router.delete("/delete/{filename}")
+async def delete_file(filename: str):
+    """
+    Method to delete a file from the server
+    :param filename: Name of the file to be deleted
+    :return: Message with the file deleted
+    """
+    try:
+        os.remove(f"data/{filename}.pdf")
+        return {"message": f"File {filename} deleted"}
+    except Exception as e:
+        return HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
