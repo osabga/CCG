@@ -35,10 +35,9 @@ class Question(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "_id": "066de609-b04a-4b30-b46c-32537c7f1f6e",
                 "question": "What is NEORIS?",
                 "answer": "",
-                "userId": "066de609-b04a-4b30-b46c-32537c7f1f6e"
+                "userId": "82d00a97-d923-4c5a-bc8e-e1684eff66a9"
             }
         }
 
