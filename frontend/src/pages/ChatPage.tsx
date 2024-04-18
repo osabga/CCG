@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import SpaceCatImage from '../assets/SpaceCat.png'
 import Sidebar from '../components/Sidebar';
 import axios from 'axios';
-import { set } from 'firebase/database';
 import Conversation from '../components/Conversation';
 
 const ChatPage = () => {
