@@ -6,6 +6,7 @@ import RestorePassword from './pages/RestorePassword'
 import AddQuestion from './pages/AddQuestion'
 import EditQuestions from './pages/EditQuestions'
 import ChatPage from './pages/ChatPage'
+import FrequentlyQuestions from './pages/FrequentlyQuestions'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path='/AddQuestion' element={ <AddQuestion/> }/>
             <Route path='/EditQuestion' element={ <EditQuestions/> }/>
             <Route path='/ChatPage' element={ <ChatPage/> }/>
+            <Route path='/FrequentlyQuestions' element={ <FrequentlyQuestions/> }/>
           </Routes>
         </Router>
     </div>
