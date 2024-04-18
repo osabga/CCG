@@ -49,6 +49,9 @@ def train_model():
     If you don't know the answer, just say that you don't know, don't try to make up an answer.
     Use three sentences maximum and keep the answer as concise as possible.
     Always say "thanks for asking!" at the end of the answer.
+    When asked in spanish the answer should be in spanish. When asked in english the answer should be in english.
+    If the user greets the bot, the bot should greet back."
+    
     
     {context}
     
