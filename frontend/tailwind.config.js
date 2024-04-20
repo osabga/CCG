@@ -14,6 +14,7 @@ export default {
         'gradient-to-b': 'linear-gradient(180deg, #602EA6 0%, #2C3262 52.41%);',
         'gradient-to-c': 'linear-gradient(180deg, #C977D6 0%, #2C3262 52.41%);',
         'gradient-to-d': 'linear-gradient(90deg, #141727 0%, #2C3262 52.41%);',
+        'gradient-to-e': 'linear-gradient(90deg, #141727 0%, #2C3262 52.41%);',
 
       },
     },
@@ -62,6 +63,21 @@ export default {
           textFillColor: 'transparent',
           backgroundBlendMode: 'normal, overlay, overlay',
         },
+        '.hero-subtitle': {
+          height: '100px',
+          fontFamily: '\'Inter\', sans-serif',
+          fontStyle: 'normal',
+          fontWeight: '600',
+          fontSize: '60px',
+          lineHeight: '90px',
+          background: 'linear-gradient(76.27deg, #CC51D6 -2.26%, rgba(90, 104, 232, 0.6) 28.13%, #E1B1FF 53.17%), linear-gradient(114.08deg, #FFFFFF 4%, rgba(255, 255, 255, 0.5) 75.12%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          textFillColor: 'transparent',
+          backgroundBlendMode: 'normal, overlay, overlay',
+        },
+
         '.hero-image-blur': {
           background: 'conic-gradient(from 180deg at 50% 50%, rgba(76, 57, 146, 0.86) -40.48deg, rgba(82, 38, 136, 0) 107.08deg, rgba(183, 110, 195, 0) 177.49deg, rgba(76, 57, 146, 0.86) 319.52deg, rgba(82, 38, 136, 0) 467.08deg)',
           filter: 'blur(17px)',
@@ -116,6 +132,31 @@ export default {
           order: '0',
           flexGrow: '0',
         },
+        '.card-container': {
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap', // Allow cards to wrap to the next line
+          justifyContent: 'center', // Center cards horizontally
+          gap: '20px', // Adjust the gap between cards
+        },
+        '.card': {
+          backgroundColor: '#10183F',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          width: 'var(--card-width)', // Use the defined width utility
+          padding: 'var(--card-padding)', // Use the defined padding utility
+          margin: 'var(--card-margin)', // Use the defined margin utility
+          
+        },
+        '.question': {
+          fontWeight: 'bold',
+          marginBottom: '10px',
+          color: '#fff',
+        },
+        '.answer': {
+          color: '#fff',
+        },
+        
       };
       addUtilities(newUtilities, ['responsive', 'hover']);
     },

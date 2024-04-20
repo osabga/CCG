@@ -732,6 +732,10 @@ video {
   width: 50vw;
 }
 
+.w-\[70vw\] {
+  width: 70vw;
+}
+
 .w-full {
   width: 100%;
 }
@@ -868,14 +872,13 @@ video {
   background-color: rgb(56 44 100 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#E9EFFA0F\] {
+  background-color: #E9EFFA0F;
+}
+
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.bg-blue-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
 }
 
 .bg-gray-700 {
@@ -886,14 +889,6 @@ video {
 .bg-gray-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
-.bg-\[\] {
-  background-color: ;
-}
-
-.bg-\[\#E9EFFA0F\] {
-  background-color: #E9EFFA0F;
 }
 
 .bg-opacity-90 {
@@ -997,16 +992,8 @@ video {
   padding-left: 0.75rem;
 }
 
-.pl-64 {
-  padding-left: 16rem;
-}
-
 .pr-4 {
   padding-right: 1rem;
-}
-
-.pl-\[20rem\] {
-  padding-left: 20rem;
 }
 
 .text-center {
@@ -1161,6 +1148,21 @@ video {
   background-blend-mode: normal, overlay, overlay;
 }
 
+.hero-subtitle {
+  height: 100px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 60px;
+  line-height: 90px;
+  background: linear-gradient(76.27deg, #CC51D6 -2.26%, rgba(90, 104, 232, 0.6) 28.13%, #E1B1FF 53.17%), linear-gradient(114.08deg, #FFFFFF 4%, rgba(255, 255, 255, 0.5) 75.12%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  background-blend-mode: normal, overlay, overlay;
+}
+
 .hero-image-blur {
   background: conic-gradient(from 180deg at 50% 50%, rgba(76, 57, 146, 0.86) -40.48deg, rgba(82, 38, 136, 0) 107.08deg, rgba(183, 110, 195, 0) 177.49deg, rgba(76, 57, 146, 0.86) 319.52deg, rgba(82, 38, 136, 0) 467.08deg);
   filter: blur(17px);
@@ -1220,6 +1222,33 @@ video {
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  background-color: #10183F;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: var(--card-width);
+  padding: var(--card-padding);
+  margin: var(--card-margin);
+}
+
+.question {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.answer {
+  color: #fff;
 }
 
 .hover\:bg-blue-700:hover {
@@ -1299,6 +1328,10 @@ video {
 
   .lg\:mt-\[-15rem\] {
     margin-top: -15rem;
+  }
+
+  .lg\:mt-\[-40rem\] {
+    margin-top: -40rem;
   }
 
   .lg\:flex {
