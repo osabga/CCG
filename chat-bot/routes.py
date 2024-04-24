@@ -1,10 +1,12 @@
-from fastapi import APIRouter, Body, Request, Response, HTTPException, status, Depends
+from fastapi import APIRouter, Body, Request, Response, HTTPException, status, Depends, File, UploadFile
 from fastapi.encoders import jsonable_encoder
 from pymongo import MongoClient
 from typing import List
 from models import User, Question
 from bson import ObjectId
 from own_gpt import model_response
+import os
+import shutil
 
 router = APIRouter()
 
@@ -80,20 +82,33 @@ async def get_responses(user_id: str, db: MongoClient = Depends(get_database)):
         return HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
 
 
+@router.post("/upload/")
+async def upload_file(file: UploadFile):
+    """
+    Method to upload a file to the server
+    :param file: Document to be uploaded
+    :return: A message with the filename
+    """
+    if not file.filename.endswith('.pdf'):
+        raise HTTPException(status_code=400,
+                            detail="File must be a PDF file")
+
+    # Open the file in the data folder with the same name as the file
+    with open(os.path.join("data", file.filename), "wb") as buffer:
+        # Shutil is used to copy the file from the request to the buffer
+        shutil.copyfileobj(file.file, buffer)
+    return {"filename": file.filename}
 
 
-
-
-"""
-@router.get("/", response_description="List all books", response_model=List[Book])
-def list_books(request: Request):
-    books = list(request.app.database["books"].find(limit=100))
-    return books
-
-
-@router.get("/{id}", response_description="Get a single book by id", response_model=Book)
-def find_book(id: str, request: Request):
-    if (book := request.app.database["books"].find_one({"_id": id})) is not None:
-        return book
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {id} not found")
-"""
+@router.delete("/delete/{filename}")
+async def delete_file(filename: str):
+    """
+    Method to delete a file from the server
+    :param filename: Name of the file to be deleted
+    :return: Message with the file deleted
+    """
+    try:
+        os.remove(f"data/{filename}.pdf")
+        return {"message": f"File {filename} deleted"}
+    except Exception as e:
+        return HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
