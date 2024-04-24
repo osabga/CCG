@@ -6,11 +6,16 @@ import dotenv from 'dotenv';
 import Pregunta from "./Schema/pregunta";
 import Categoria from "./Schema/categoria";
 
+const cors= require('cors')
+
+
+
 dotenv.config();
 const app = express()
 app.listen(3000)
 app.use(express.json());
 
+app.use(cors())
 //Funcion de pruebas
 const resetDB = async () => {
     try {
