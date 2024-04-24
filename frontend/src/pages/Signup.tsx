@@ -47,7 +47,7 @@ const Signup = () => {
     } catch (error) {
       console.error('There was an error sending the data', error);
     }
-  };
+  }};
 
 
   return (
@@ -129,6 +129,6 @@ const Signup = () => {
 
   )
 }
-}
+
 export default Signup
 
