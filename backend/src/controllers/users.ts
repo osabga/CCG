@@ -1,5 +1,27 @@
 import { Request, Response } from 'express';
 import User from "../Schema/user"
+import mongoose from 'mongoose';
+
+export async function getUser(req:Request,res:Response){
+    console.log(req.body.id)
+    const user_string= req.body.id
+    
+    if (!user_string || !mongoose.isValidObjectId(user_string)) {
+        return res.status(400).json({ message: 'Invalid user ID' });
+    }
+
+
+    User.findById(user_string)
+    .then((user: any) =>{
+        if (user) {
+            return res.status(200).json(user);
+        }
+        else {
+            return res.status(400).json({message:"user not found"});
+        }
+})
+}
+
 
 export async function postUser(req:Request,res:Response){
     try{
@@ -7,11 +29,8 @@ export async function postUser(req:Request,res:Response){
     const body = req.body as { name?: string; email?: string; password?: string };
     
     if (!body || !body.name || !body.email || !body.password) {
-        console.log(body.name,body.email,body.password)
-        return res.status(400).json({ message: 'datos faltantes!' });
-        
+        return res.status(400).json({ message: 'datos faltantes!'}); 
     }
-    
     
     const my_user = new User({
         name: body.name,
@@ -24,6 +43,7 @@ export async function postUser(req:Request,res:Response){
     return res.status(201).json(savedUser);
     }
     catch(error){
-        console.error("no user in db :(", error)
+        console.error("user not posted in db :(", error)
     }
 }
+
