@@ -7,6 +7,16 @@ import Pregunta from "./Schema/pregunta";
 import Categoria from "./Schema/categoria";
 import { preguntasRouter } from "./Routes/preguntas";
 
+
+/*const authMiddleware = require("./middleware/auth");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const Tokens = require("csrf");
+
+const tokens = new Tokens();
+
+*/
+
 const colors = {
   reset: "\x1b[0m",
   green : "\x1b[32;1m",
@@ -16,6 +26,9 @@ const colors = {
 dotenv.config();
 const app = express()
 app.listen(3000)
+
+//app.use(cookieParser());
+//app.use(bodyParser.json());
 app.use(express.json());
 
 //Funcion de pruebas
@@ -33,8 +46,6 @@ const resetDB = async () => {
       console.error('error en base de datos', error);
     } 
   }; 
-
-  
 
 
 mongoose.connect(process.env.DATABASE_URL)
