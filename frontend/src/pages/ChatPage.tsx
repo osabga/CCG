@@ -10,32 +10,39 @@ const ChatPage = () => {
   const [data, setData] = useState([] as any[]);
   const userId = "82d00a97-d923-4c5a-bc8e-e1684eff66a9"
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const fetchData = async (buttonText: string) => {
+    try {
+      const response = await axios.post('http://localhost:8082/api/v1/', {
+        question: buttonText,
+        answer: "",
+        userId: "82d00a97-d923-4c5a-bc8e-e1684eff66a9",
+      });
+
+      if (response) {
+        const answer = await axios.get(`http://localhost:8082/api/v1/${userId}`);
+        setData([...data, { question: buttonText, answer: answer.data.response }]);
+      }
+    } catch (error) {
+      console.error('There was an error sending the data', error);
+    }
+  };
+
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
   const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setVisual(true);
+    setInputValue('');
+    fetchData(inputValue);
+  };
 
-    try {
-      const response = await axios.post('http://localhost:8082/api/v1/', {
-        question: inputValue,
-        answer: "",
-        userId: "82d00a97-d923-4c5a-bc8e-e1684eff66a9",
-      });
-
-      if (response) {
-        const answer = await axios.get(`http://localhost:8082/api/v1/${userId}`)
-        console.log(answer)
-
-        setData([...data, { question: inputValue, answer: answer.data.response }]);
-      }
-
-      //console.log(response.data);
-    } catch (error) {
-      console.error('There was an error sending the data', error);
-    }
+  const handleButtonClick = async (buttonText: string) => {
+    setVisual(true);
+    setInputValue('');
+    fetchData(buttonText);
   };
 
   useEffect(() => {
@@ -46,34 +53,49 @@ const ChatPage = () => {
   return (
     <div className="bg-gradient-to-d h-screen flex ">
       <Sidebar />
-      <div>
-        {data.map((item, index) => (
-          <Conversation key={index} question={item.question} answer={item.answer} />
-        ))}
-      </div>
-      <div className="flex-grow flex items-center justify-center pl-50">
-        <div className="text-center w-full max-w-4xl">
-          <img src={SpaceCatImage} alt="NeoBot" className="mx-auto mb-4 h-[4rem]" /> {/* Replace with your image */}
-          <h1 className="text-2xl text-white font-bold mb-8">NeoBot</h1>
-          {!visual && (
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              {/* Example chat bubbles */}
-              <div className="bg-[#382c64] p-3 rounded-xl text-white">What is NEORIS?</div>
-              <div className="bg-[#382c64] p-3 rounded-xl text-white">Which are the services of NEORIS?</div>
-              <div className="bg-[#382c64] p-3 rounded-xl text-white">Products of NEORIS</div>
-              <div className="bg-[#382c64] p-3 rounded-xl text-white">Got any creative ideas for a 10 year old's birthday? 🎈</div>
-              <div className="bg-[#382c64] p-3 rounded-xl text-white">Allows users to provide follow-up corrections</div>
-              <div className="bg-[#382c64] p-3 rounded-xl text-white">May occasionally produce harmful content if biased information is provided</div>
-            </div>
-          )}
-
-          <div className="flex items-center">
-            <input value={inputValue}
-              onChange={handleChange} className="bg-[#382c64] flex-grow p-2 rounded-l-lg text-white " placeholder="Ask Neochat" />
-            <button onClick={handleClick} className="bg-[#382c64] p-2 rounded-r-lg text-white">▶</button>
+      <div className="container mx-auto p-4">
+        <img src={SpaceCatImage} alt="NeoBot" className="mx-auto mb-4 h-[4rem]" /> {/* Replace with your image */}
+        <h1 className="text-2xl text-white text-center font-bold mb-8">Neora</h1>
+        {!visual && (
+          <div className="grid grid-cols-2 gap-4 mb-8">
+            <button className="bg-[#382c64] p-3 rounded-xl text-white" onClick={() => handleButtonClick("What is NEORIS?")}>
+              What is NEORIS?
+            </button>
+            <button className="bg-[#382c64] p-3 rounded-xl text-white" onClick={() => handleButtonClick("Which are the services of NEORIS?")}>
+              Which are the services of NEORIS?
+            </button>
+            <button className="bg-[#382c64] p-3 rounded-xl text-white" onClick={() => handleButtonClick("NEORISES Products")}>
+              NEORISES Products
+            </button>
+            <button className="bg-[#382c64] p-3 rounded-xl text-white" onClick={() => handleButtonClick("NEORISES Certificates")}>
+              NEORISES Certificates
+            </button>
           </div>
+
+        )}
+        <div className="chatbox max-w-md mx-auto border p-3 bg-gray-100 overflow-y-auto h-64 mb-4">
+          {data.map((item, index) => (
+            <div>
+              <Conversation key={index} question={item.question} answer={item.answer} />
+            </div>
+          ))}
         </div>
+        <form onSubmit={handleClick} className="flex justify-between">
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            className="flex-1 border-2 border-gray-300 p-2 mr-2 shadow-sm focus:ring rounded-sm"
+            placeholder="Escribe tu pregunta..."
+            style={{ backgroundColor: 'white', color: 'black' }}
+          />
+          <button type="submit" className="text-white px-4 py-2 rounded-sm">
+            Enviar
+          </button>
+        </form>
       </div>
+
+
 
 
     </div>
