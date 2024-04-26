@@ -34,20 +34,20 @@ const Signup = () => {
     const fullName = `${formData.firstName} ${formData.lastName}`;
     console.log(`${formData.firstName} ${formData.lastName}`, formData.email, formData.password)
 
-    if (formData.password == formData.password_confirm) {
+    //if (formData.password == formData.password_confirm) {
 
     try {
-      const response = await axios.post('http://localhost:3000/', {
+      const response = await axios.post('http://localhost:3000/users/', {
         name: fullName,
         email: formData.email,
         password: formData.password
-      });
+      }); 
 
-      console.log(response.data);
+      console.log("front response:" , response.data);
     } catch (error) {
       console.error('There was an error sending the data', error);
     }
-  }};
+  };
 
 
   return (

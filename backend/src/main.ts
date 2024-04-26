@@ -55,7 +55,6 @@ const resetDB = async () => {
 
 mongoose.connect(process.env.DATABASE_URL)
   .then(() => console.log(colors.green + "Connected!" + colors.reset))
-  .then(console.log("regular"))
   //.then(resetDB())
   .catch((error:any) => console.log(colors.red + "DB error " + colors.reset, error));
 

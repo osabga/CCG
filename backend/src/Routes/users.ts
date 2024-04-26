@@ -9,7 +9,7 @@ const express = require("express")
 const userRouter = express.Router()
 
 // get user by id DONE BASIC
-userRouter.get("/", getUser)
+userRouter.post("/login", getUser)
 
 // new user to db DONE BASIC 
 userRouter.post("/", postUser)

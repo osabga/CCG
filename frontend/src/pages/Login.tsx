@@ -17,9 +17,12 @@ const Login = () => {
   };
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+    console.log(loginData)
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/login', loginData);
+      const response = await axios.post('http://localhost:3000/users/login', loginData);
+
+
       console.log(response.data);
 
       // Aquí manejarías la respuesta de la API, como guardar el token, navegar a otra página, etc.
@@ -47,6 +50,7 @@ const Login = () => {
             <div>
               <input
                 type="text"
+                name="email"
                 placeholder="Email address"
                 onChange={handleChange}
                   value={loginData.email}
@@ -55,7 +59,8 @@ const Login = () => {
             </div>
             <div>
               <input
-                type="text"
+                type="password"
+                name="password"
                 placeholder="Password"
                 onChange={handleChange}
                   value={loginData.password}

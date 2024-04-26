@@ -3,24 +3,32 @@ import User from "../Schema/user"
 import mongoose from 'mongoose';
 
 export async function getUser(req:Request,res:Response){
-    console.log(req.body.id)
-    const user_string= req.body.id
-    
-    if (!user_string || !mongoose.isValidObjectId(user_string)) {
-        return res.status(400).json({ message: 'Invalid user ID' });
+    try{
+    console.log(req.body)
+    const body = req.body as {email?:string,password?:string}
+
+    // !mongoose.isValidObjectId(user_string)
+    if (!body || !body.email || !body.password) {
+        return res.status(400).json({ message: 'Invalid request body' });
     }
 
 
-    User.findById(user_string)
-    .then((user: any) =>{
-        if (user) {
-            return res.status(200).json(user);
-        }
-        else {
-            return res.status(400).json({message:"user not found"});
-        }
-})
+    const my_user = await User.find(
+    {
+        email:body.email,
+        password: body.password
+    })
+    
+    return res.status(200).json(my_user)
 }
+    
+    catch{
+    
+        return res.status(400).json({message: 'ERROR'})
+    }
+
+}
+
 
 
 export async function postUser(req:Request,res:Response){
@@ -39,11 +47,11 @@ export async function postUser(req:Request,res:Response){
     });
 
     const savedUser = await my_user.save()
-
+    console.log("user in db")
     return res.status(201).json(savedUser);
     }
     catch(error){
         console.error("user not posted in db :(", error)
     }
-}
+} 
 
