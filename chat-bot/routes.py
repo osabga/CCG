@@ -65,6 +65,28 @@ async def get_responses(user_id: str, db: MongoClient = Depends(get_database)):
         return HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
 
 
+@router.get("/questions/{user_id}", response_description="Chatbot questions")
+async def get_user_questions(user_id: str, db: MongoClient = Depends(get_database)):
+    """
+    Method to get all the questions from a user
+    :param user_id: ID of the user
+    :param db: Database connection
+    :return: List of questions from the user
+    """
+    try:
+        # Find all the questions from the user
+        user_questions = db["questions"].find({"userId": user_id})
+
+        response = []
+        for question in user_questions:
+            question['_id'] = str(question['_id'])  # Convert ObjectId to string
+            response.append(question)
+
+        return jsonable_encoder(response)
+    except Exception as e:
+        return HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+
+
 @router.post("/upload/")
 async def upload_file(file: UploadFile):
     """
