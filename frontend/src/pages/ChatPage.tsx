@@ -53,11 +53,11 @@ const ChatPage = () => {
   return (
     <div className="bg-gradient-to-d h-screen flex ">
       <Sidebar />
-      <div className="container mx-auto p-4">
+      <div className="flex flex-col justify-center container mx-auto p-4">
         <img src={SpaceCatImage} alt="NeoBot" className="mx-auto mb-4 h-[4rem]" /> {/* Replace with your image */}
-        <h1 className="text-2xl text-white text-center font-bold mb-8">Neora</h1>
+        <h1 className="text-2xl text-white text-center font-bold mb-8 space-y-10">Neora</h1>
         {!visual && (
-          <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="grid grid-cols-2 gap-4 mt-10 mb-[4rem]">
             <button className="bg-[#382c64] p-3 rounded-xl text-white" onClick={() => handleButtonClick("What is NEORIS?")}>
               What is NEORIS?
             </button>
@@ -73,31 +73,29 @@ const ChatPage = () => {
           </div>
 
         )}
+        
+        {visual && (
         <div className="chatbox max-w-md mx-auto border p-3 bg-gray-100 overflow-y-auto h-64 mb-4">
           {data.map((item, index) => (
-            <div>
-              <Conversation key={index} question={item.question} answer={item.answer} />
+            <div key={index}>
+              <Conversation question={item.question} answer={item.answer} />
             </div>
           ))}
         </div>
-        <form onSubmit={handleClick} className="flex justify-between">
+      )}
+        <form onSubmit={handleClick} className="flex justify-between mt-[4rem] mb-[-5rem]">
           <input
             type="text"
             value={inputValue}
             onChange={handleInputChange}
-            className="flex-1 border-2 border-gray-300 p-2 mr-2 shadow-sm focus:ring rounded-sm"
+            className="flex-1 p-2 mr-2 shadow-sm bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
             placeholder="Escribe tu pregunta..."
-            style={{ backgroundColor: 'white', color: 'black' }}
           />
           <button type="submit" className="text-white px-4 py-2 rounded-sm">
             Enviar
           </button>
         </form>
       </div>
-
-
-
-
     </div>
   );
 };
