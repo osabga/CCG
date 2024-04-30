@@ -29,7 +29,7 @@ const cors= require('cors')
 
 dotenv.config();
 const app = express()
-app.listen(3000)
+app.listen(3005)
 
 //app.use(cookieParser());
 //app.use(bodyParser.json());
@@ -53,10 +53,12 @@ const resetDB = async () => {
   }; 
 
 
+
 mongoose.connect(process.env.DATABASE_URL)
   .then(() => console.log(colors.green + "Connected!" + colors.reset))
-  //.then(resetDB())
-  .catch((error:any) => console.log(colors.red + "DB error " + colors.reset, error));
+  //.then(resetDB()) // Uncomment if you want to reset DB on deploy
+  .catch((error: any) => console.log(colors.red + "DB error " + colors.reset, error));
+
 
 
 app.get("/", (req: any,res: any) => { console.log(" helloo "); res.send("my api endpoint")}  )
