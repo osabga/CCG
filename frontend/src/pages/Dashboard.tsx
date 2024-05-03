@@ -1,5 +1,5 @@
 import Header from '../components/Header';
-import CardQuestion from '../components/CardQuestion';
+import Chart from '../components/Chart';
 
 function Dashboard() {
   return (
@@ -16,9 +16,9 @@ function Dashboard() {
         {/* Card de Gráfico */}
         <div className="w-full md:w-1/2 lg:w-1/2 p-4">
           <div className="bg-gradient-to-d from-gray-900 to-gray-800 rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold text-white mb-4">Gráfico</h2>
             <div className="w-full h-48 bg-gray-700 rounded-lg"></div>
-            {/* Replace the placeholder with your chart component */}
+            <Chart />
+            <h2 className="text-xl font-semibold text-white mb-4">Active Users</h2>
           </div>
         </div>
       </div>

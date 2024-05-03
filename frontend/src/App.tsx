@@ -24,8 +24,6 @@ function App() {
             <Route path='/ChatPage' element={ <ChatPage/> }/>
             <Route path='/FrequentlyQuestions' element={ <FrequentlyQuestions/> }/>
             <Route path='/Dashboard' element={ <Dashboard/> }/>
-
-            
           </Routes>
         </Router>
     </div>
