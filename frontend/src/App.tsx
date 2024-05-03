@@ -8,6 +8,7 @@ import AddQuestion from './pages/AddQuestion.tsx'
 import EditQuestions from './pages/EditQuestions.tsx'
 import ChatPage from './pages/ChatPage.tsx'
 import FrequentlyQuestions from './pages/FrequentlyQuestions.tsx'
+import Example from './pages/Example.tsx'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
             <Route path='/ChatPage' element={ <ChatPage/> }/>
             <Route path='/FrequentlyQuestions' element={ <FrequentlyQuestions/> }/>
             <Route path='/Faqs' element={ <Faqs/> }/>
+            <Route path='/example' element={ <Example/> }/>
           </Routes>
         </Router>
     </div>
