@@ -73,16 +73,16 @@ const ChatPage = () => {
           </div>
 
         )}
-        
+
         {visual && (
-        <div className="chatbox max-w-md mx-auto border p-3 bg-gray-100 overflow-y-auto h-64 mb-4">
-          {data.map((item, index) => (
-            <div key={index}>
-              <Conversation question={item.question} answer={item.answer} />
-            </div>
-          ))}
-        </div>
-      )}
+          <div className="max-w-lg mx-auto p-3 overflow-y-auto h-64 mb-4">
+            {data.map((item, index) => (
+              <div key={index}>
+                <Conversation question={item.question} answer={item.answer} />
+              </div>
+            ))}
+          </div>
+        )}
         <form onSubmit={handleClick} className="flex justify-between mt-[4rem] mb-[-5rem]">
           <input
             type="text"
