@@ -4,6 +4,6 @@ const express= require("express")
 
 const preguntasRouter = express.Router()
 
-preguntasRouter.post("/",postPregunta)
+preguntasRouter.post("/post",postPregunta)
 
 export {preguntasRouter}

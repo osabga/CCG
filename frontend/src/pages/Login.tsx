@@ -20,7 +20,7 @@ const Login = () => {
     console.log(loginData)
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/users/login', loginData);
+      const response = await axios.post('https://backend-pp4k0x4sp-gilva1s-projects.vercel.app/users/login', loginData);
 
 
       console.log(response.data);
