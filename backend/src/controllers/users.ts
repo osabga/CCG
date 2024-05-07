@@ -3,6 +3,36 @@ import User from "../Schema/user"
 import mongoose from 'mongoose';
 const crypto= require('crypto')
 
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('four_keys_in_one');
+
+var passwordValidator = require('password-validator');
+
+var pass_schema = new passwordValidator();
+
+pass_schema
+.is().min(8)
+.is().max(20)
+.has().uppercase()
+.has().lowercase()
+.has().digits(1)
+.has().not().spaces()
+
+var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+
+function encryptPassword(password:String) {
+    
+    const hash = crypto.createHash('sha256');
+    
+    hash.update(password);
+    
+    const encryptedPassword = hash.digest('hex');
+    
+    return encryptedPassword;
+}
+
+
 // funciones auxiliares:
 function getToken() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -34,7 +64,7 @@ export async function login(req:Request,res:Response){
     const my_user = await User.find(
     {
         email:body.email,
-        password: body.password
+        password: encryptPassword(body.password)
     })
 
     if (my_user.length != 1){
@@ -69,10 +99,18 @@ export async function signUp(req:Request,res:Response){
         return res.status(403).json({message: 'El email ya esta registrado'})
     }
 
+    if (!body.email.match(emailRegex)){
+        return res.status(403).json({message:'El email es invalido'})
+    }
+
+    if (!pass_schema.validate(body.password)){
+        return res.status(403).json({message:'el password no cumple las reglas'})
+    }
+
     const my_user = new User({
         name: body.name,
         email: body.email,
-        password: body.password
+        password: encryptPassword(body.password)
     });
 
     const savedUser = await my_user.save()
