@@ -9,7 +9,8 @@ export default {
           'light': '#2C3262',
         },
       },
-      // Si aún no tienes una configuración de gradiente, la puedes agregar así:
+      'custom-purple': '#C977D6', // Here is your custom purple color
+      },
       backgroundImage: {
         'gradient-to-b': 'linear-gradient(180deg, #602EA6 0%, #2C3262 52.41%);',
         'gradient-to-c': 'linear-gradient(180deg, #C977D6 0%, #2C3262 52.41%);',
@@ -18,7 +19,6 @@ export default {
 
       },
     },
-  },
   plugins: [
     function({ addUtilities }) {
       const newUtilities = {
