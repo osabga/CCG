@@ -33,9 +33,14 @@ const BarChart: FC<BarChartProps> = ({ data }) => {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true, // Comenzar el eje Y desde 0
+        max: Math.max(...data.map(d => d.count)) + 50, // Ajustar el máximo del eje Y
+        ticks: {
+          stepSize: Math.max(...data.map(d => d.count)) / 4, // Ajustar el tamaño del paso del eje Y
+        }
       }
     },
     plugins: {

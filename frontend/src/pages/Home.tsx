@@ -4,9 +4,9 @@ import CardSection from '../components/CardSection'
 
 const Home = () => {
   return (
-    <div className='bg-black'>
+    <div className='bg-gradient-to-d'>
       <Header/>
-      <section className="bg-black text-white flex justify-between items-center p-10 space-x-72 mb-[-10rem]">
+      <section className="bg-gradient-to-d text-white flex justify-between items-center p-10 space-x-72 mb-[-10rem]">
       <div className="space-y-4 w-[50vw] lg:mt-[-15rem] ">
         <h1 className="hero-title">Imagine with Neora</h1>
         <p className="text-base">
