@@ -1,5 +1,5 @@
 import Header from "../components/Header"
-import LoginImage from '../assets/Login_image.png'
+import login from "../assets/login.png";
 import axios from "axios";
 import { useState } from "react";
 
@@ -51,12 +51,12 @@ const Signup = () => {
 
 
   return (
-    <div className="bg-gradient-to-b ">
+    <div  className="flex flex-col min-h-screen bg-gradient-to-d from-gray-100 to-gray-300">
       <Header/>
       <div className="flex items-center justify-center min-h-screen mt-11 pb-11 ">
       <div className="flex overflow-hidden max-w-5xl mx-auto rounded-lg shadow-xl">
         {/* Contenedor del fondo de la izquierda */}
-        <img  className="w-1/2 bg-cover bg-no-repeat bg-center rounded-l-lg" src={LoginImage}/>
+        <img  className="w-1/2 bg-cover bg-no-repeat bg-center rounded-l-lg" src={login}/>
           
         
         {/* Contenedor del formulario de registro */}
