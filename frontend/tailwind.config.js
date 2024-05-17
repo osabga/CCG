@@ -11,6 +11,10 @@ export default {
       },
       'custom-purple': '#C977D6', // Here is your custom purple color
       },
+      backgroundImage2: {
+        'gradient-radial-login': 'radial-gradient(circle at center, #602EA6 0%, #C977D6 100%)',
+        'gradient-linear-signup': 'linear-gradient(to right, #602EA6, #C977D6)', // Ejemplo de degradado lineal
+      },
       backgroundImage: {
         'gradient-to-b': 'linear-gradient(180deg, #602EA6 0%, #2C3262 52.41%);',
         'gradient-to-c': 'linear-gradient(180deg, #C977D6 0%, #2C3262 52.41%);',
@@ -156,6 +160,7 @@ export default {
         '.answer': {
           color: '#fff',
         },
+
         
       };
       addUtilities(newUtilities, ['responsive', 'hover']);
