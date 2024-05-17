@@ -2,31 +2,49 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
-// Registro de componentes necesarios en Chart.js
+// Registro de componentes necesarios en Chart.js para una gráfica de línea
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
   Legend
 );
-
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    x: {
+      ticks: {
+        autoSkip: true,
+        maxRotation: 90,
+        minRotation: 45 // Ajusta según sea necesario para evitar superposiciones
+      }
+    },
+    y: {
+      beginAtZero: true,
+    }
+  },
   plugins: {
     legend: {
       position: 'top' as const,
     },
-  },
+    tooltip: {
+      enabled: true,
+    }
+  }
 };
+
 
 const labels = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
@@ -35,27 +53,21 @@ const data = {
   datasets: [
     {
       label: 'Preguntas por Día',
-      data: [300, 450, 290, 500, 260, 700, 400],
-      backgroundColor: 'rgba(255, 255, 255, 1)',
-      borderColor: 'rgba(0, 0, 0, 1)', // Color de borde para todas las caras
-      borderWidth: {
-        top: 1,
-        left: 1,
-        right: 1,
-        bottom: 1, // Grosor específico del borde inferior
-      },
-      borderRadius: 10,
-      barThickness: 20, // Establece un grosor fijo para las barras
+      data: [255, 450, 290, 500, 260, 700, 400],
+      fill: false,
+      borderColor: 'rgba(255, 255, 255, 1)', // Color del borde de la línea
+      tension: 0.1 // Suavidad de la línea
     }
   ],
 };
 
 function Chart() {
   return (
-    <div style={{ width: '600px', height: '300px' }}>
-      <Bar data={data} options={options} />
+    <div style={{ width: '100%', minHeight: '400px' }}>
+      <Line data={data} options={options} />
     </div>
   );
 }
 
 export default Chart;
+

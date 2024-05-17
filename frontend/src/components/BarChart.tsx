@@ -23,7 +23,7 @@ const BarChart: FC<BarChartProps> = ({ data }) => {
       {
         label: 'Number of Asks', // Título de la barra de datos
         data: data.map(d => d.count), // Datos numéricos para cada pregunta
-        backgroundColor: 'rgba(255, 255, 255, 1)', // Color de las barras
+        backgroundColor: 'bg-purple-700', // Color de las barras
         borderColor: 'rgba(153, 102, 255, 1)', // Color del borde de las barras
         borderWidth: 1, // Grosor del borde de las barras
         barThickness: 60, // Grosor de las barras
@@ -49,7 +49,12 @@ const BarChart: FC<BarChartProps> = ({ data }) => {
     }
   };
 
-  return <Bar data={chartData} options={chartOptions} />;
+  return (
+    <div style={{ width: '100%', minHeight: '400px' }}>
+      <Bar data={chartData} options={chartOptions} />
+    </div>
+  );
+
 };
 
 export default BarChart;
