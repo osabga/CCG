@@ -1,5 +1,6 @@
 import Header from "../components/Header"
 import LoginImage from '../assets/Login_image.png'
+import login from "../assets/login.png"
 import { Link } from "react-router-dom"
 import axios from 'axios';
 import { useState } from "react";
@@ -32,12 +33,12 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b ">
+    <div className="flex flex-col min-h-screen bg-gradient-to-d from-gray-100 to-gray-300">
       <Header/>
       <div className="flex items-center justify-center min-h-screen mt-11 pb-11 ">
       <div className="flex overflow-hidden max-w-5xl mx-auto rounded-lg shadow-xl">
         {/* Contenedor del fondo de la izquierda */}
-        <img  className="w-1/2 bg-cover bg-no-repeat bg-center rounded-l-lg" src={LoginImage}/>
+        <img className="object-cover w-1/2 rounded-l-lg" src={login} />
           
         
         {/* Contenedor del formulario de registro */}
@@ -73,12 +74,9 @@ const Login = () => {
           </p>
             
             <div>
-              <button
-                type="submit"
-                className="w-full p-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded font-bold hover:opacity-90 transition-opacity duration-300"
-              >
-                Login
-              </button>
+            <button className="w-full p-4 text-white rounded font-bold hover:opacity-90 transition-opacity duration-300 bg-gradient-radial">
+              Login
+            </button>
             </div>
           </form>
           <p className="text-xs text-gray-400 text-center mt-4">
@@ -94,12 +92,7 @@ const Login = () => {
             </Link>
             </div>
             <div>
-              <button
-                type="submit"
-                className="w-full p-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded font-bold hover:opacity-90 transition-opacity duration-300"
-              >
-                Login with Google
-              </button>
+    
             </div>
         </div>
       </div>
