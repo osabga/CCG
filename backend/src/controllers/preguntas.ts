@@ -10,9 +10,9 @@ import mongoose from 'mongoose';
 // agregar la pregunta a la base de datos
 export async function postPregunta(req:Request,res:Response){
     try{
-    const body = req.body as {usuario?: string ,pregunta?:string,respuesta?:string,categoria?:string}
+    const body = req.body as {usuario?: string ,pregunta?:string,respuesta?:string,categoria?:string,date?:string}
 
-    if (!body|| !body.usuario || !body.pregunta|| !body.respuesta || !body.categoria) {
+    if (!body|| !body.usuario || !body.pregunta|| !body.respuesta || !body.categoria || !body.date) {
         return res.status(400).json({ message: 'datos faltantes!'}); 
     }
 
@@ -36,7 +36,8 @@ export async function postPregunta(req:Request,res:Response){
     user: body.usuario,
     pregunta:body.pregunta,
     respuesta:body.respuesta,
-    categoria: body.categoria
+    categoria: body.categoria,
+    date: new Date(body.date)
     })
 
 
@@ -44,6 +45,8 @@ export async function postPregunta(req:Request,res:Response){
     return res.status(201).json(my_pregunta)
     }
     catch(error){
-        return res.status(400).json({message:'crash!'})       
+        console.log(error)
+        return res.status(400).json({message:'crash!'})
+
     }
 }

@@ -10,7 +10,8 @@ const userSchema= new mongoose.Schema({
     name:String,
     email:String,
     password:String, 
-
+    admin:Number,
+    date:Date
 })
 
 export {User};

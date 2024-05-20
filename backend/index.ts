@@ -7,6 +7,7 @@ import { login, signUp } from "./src/controllers/users";
 const app = express();
 
 // TODO CONFIGURAR CORS PARA IMPLEMENTAR SERVICIO EN LA NUBE CCK-201
+// TODO cambiar origen de permiso cors
 const corsOptions = {
     origin: 'http://localhost:5173',
     credentials: true,

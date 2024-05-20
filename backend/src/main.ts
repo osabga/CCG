@@ -6,6 +6,15 @@ import dotenv from 'dotenv';
 import Pregunta from "./Schema/pregunta";
 import Categoria from "./Schema/categoria";
 import { preguntasRouter } from "./Routes/preguntas";
+import { adminRouter } from "./Routes/admin";
+
+/*
+número de usuarios activos 
+cantidad de preguntas realizadas en el día por mes,
+ preguntas más realizadas y veces que se preguntaron
+*/
+
+
 
 
 /*const authMiddleware = require("./middleware/auth");
@@ -56,11 +65,11 @@ const resetDB = async () => {
 
 mongoose.connect(process.env.DATABASE_URL)
   .then(() => console.log(colors.green + "Connected!" + colors.reset))
-  //.then(resetDB()) // Uncomment if you want to reset DB on deploy
+  //.then(resetDB()) 
   .catch((error: any) => console.log(colors.red + "DB error " + colors.reset, error));
-
 
 
 app.get("/", (req: any,res: any) => { console.log(" helloo "); res.send("my api endpoint")}  )
 app.use("/users", userRouter)
 app.use("/preguntas", preguntasRouter)
+app.use("/admin",adminRouter)
