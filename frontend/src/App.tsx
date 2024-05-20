@@ -7,7 +7,10 @@ import AddQuestion from './pages/AddQuestion.tsx'
 import EditQuestions from './pages/EditQuestions.tsx'
 import ChatPage from './pages/ChatPage.tsx'
 import FrequentlyQuestions from './pages/FrequentlyQuestions.tsx'
+import Services from './pages/Services.tsx'
+import Products from './pages/Products.tsx'
 import Dashboard from './pages/Dashboard.tsx'
+
 
 function App() {
 
@@ -24,6 +27,8 @@ function App() {
             <Route path='/ChatPage' element={ <ChatPage/> }/>
             <Route path='/FrequentlyQuestions' element={ <FrequentlyQuestions/> }/>
             <Route path='/Dashboard' element={ <Dashboard/> }/>
+            <Route path='/Services' element={ <Services/> }/>
+            <Route path='/Products' element={ <Products/> }/>
           </Routes>
         </Router>
     </div>
