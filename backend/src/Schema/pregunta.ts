@@ -7,7 +7,8 @@ const preguntaSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     pregunta : String,
     respuesta : String,
-    categoria_pregunta: { type: mongoose.Schema.Types.ObjectId, ref: 'Categoria' }
+    categoria_pregunta: { type: mongoose.Schema.Types.ObjectId, ref: 'Categoria' },
+    date:Date
 })
 
 //export {Pregunta}

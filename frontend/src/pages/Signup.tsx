@@ -37,7 +37,7 @@ const Signup = () => {
     //if (formData.password == formData.password_confirm) {
 
     try {
-      const response = await axios.post('http://localhost:3000/users/signup', {
+      const response = await axios.post('https://backend-g52rzw1mh-gilva1s-projects.vercel.app/users/signup', {
         name: fullName,
         email: formData.email,
         password: formData.password

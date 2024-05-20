@@ -32,7 +32,6 @@ function encryptPassword(password:String) {
     return encryptedPassword;
 }
 
-
 // funciones auxiliares:
 function getToken() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -85,9 +84,9 @@ export async function login(req:Request,res:Response){
 export async function signUp(req:Request,res:Response){
     try{
 
-    const body = req.body as { name?: string; email?: string; password?: string };
+    const body = req.body as { name?: string; email?: string; password?: string,date?:string };
     
-    if (!body || !body.name || !body.email || !body.password) {
+    if (!body || !body.name || !body.email || !body.password || !body.date) {
         return res.status(400).json({ message: 'datos faltantes!'}); 
     }
     
@@ -110,7 +109,9 @@ export async function signUp(req:Request,res:Response){
     const my_user = new User({
         name: body.name,
         email: body.email,
-        password: encryptPassword(body.password)
+        password: encryptPassword(body.password),
+        admin:0,
+        date: new Date(body.date)
     });
 
     const savedUser = await my_user.save()
