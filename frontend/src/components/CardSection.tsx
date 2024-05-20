@@ -42,11 +42,7 @@ const CardSection = () => {
             </div>
           ))}
         </div>
-        <div className="text-right mt-4">
-          <a href="#faqs" className="text-purple-300 hover:text-purple-500 transition-colors duration-300">
-            View FAQs
-          </a>
-        </div>
+        
       </div>
     </div>
   );
