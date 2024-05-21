@@ -12,14 +12,14 @@ const ChatPage = () => {
 
   const fetchData = async (buttonText: string) => {
     try {
-      const response = await axios.post('http://localhost:8082/api/v1/', {
+      const response = await axios.post('https://neorisprueba.onrender.com/api/v1/question/', {
         question: buttonText,
         answer: "",
         userId: "82d00a97-d923-4c5a-bc8e-e1684eff66a9",
       });
 
       if (response) {
-        const answer = await axios.get(`http://localhost:8082/api/v1/${userId}`);
+        const answer = await axios.get(`https://neorisprueba.onrender.com/api/v1/response/${userId}`);
         setData([...data, { question: buttonText, answer: answer.data.response }]);
       }
     } catch (error) {
