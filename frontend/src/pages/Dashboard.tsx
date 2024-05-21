@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header';
 import Chart from '../components/Chart';
 import BarChart from '../components/BarChart';
@@ -7,6 +8,8 @@ import QuestionsTable from '../components/QuestionsTable';
 import adminBackgroundImage from '../assets/AdminFoto.jpeg';
 
 function Dashboard() {
+  const navigate = useNavigate();
+
   const [questions, setQuestions] = useState([
     { question: "What is NEORIS?", answer: "NEORIS is a Digital Accelerator that helps companies step into the future." },
     { question: "NEORIS Cloud Services", answer: "Move to the Cloud, Advanced Analytics and AI & Hyperautomation" },
@@ -57,8 +60,10 @@ function Dashboard() {
               Glad to see you again! Ask me anything.
             </p>
             <p className="block md:hidden">Welcome back!</p>
-            <button className="mt-2 lg:mt-4  hover:bg-purple-800 text-white font-bold py-2 px-4 rounded">
+            <button className="mt-2 lg:mt-4  hover:bg-purple-800 text-white font-bold py-2 px-4 rounded"
+            onClick={() => navigate('/ChatPage')}>
               Tap to ask →
+              
             </button>
           </div>
           <div className="w-full mt-4 mb-11">
