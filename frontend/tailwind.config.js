@@ -20,6 +20,7 @@ export default {
         'gradient-to-c': 'linear-gradient(180deg, #C977D6 0%, #2C3262 52.41%);',
         'gradient-to-d': 'linear-gradient(90deg, #141727 0%, #2C3262 52.41%);',
         'gradient-to-e': 'linear-gradient(90deg, #141727 0%, #2C3262 52.41%);',
+        'gradient-to-F': 'linear-gradient(90deg, #141727 0%, #0B1531 52.41%);',
 
       },
     },
@@ -54,12 +55,12 @@ export default {
           borderRadius: '10px',
         },
         '.hero-title': {
-          height: '180px',
+          height: '30vh',
           fontFamily: '\'Inter\', sans-serif',
           fontStyle: 'normal',
           fontWeight: '600',
-          fontSize: '80px',
-          lineHeight: '90px',
+          fontSize: '6vw',
+          lineHeight: '1.125',
           background: 'linear-gradient(76.27deg, #CC51D6 -2.26%, rgba(90, 104, 232, 0.6) 28.13%, #E1B1FF 53.17%), linear-gradient(114.08deg, #FFFFFF 4%, rgba(255, 255, 255, 0.5) 75.12%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
@@ -84,12 +85,12 @@ export default {
 
         '.hero-image-blur': {
           background: 'conic-gradient(from 180deg at 50% 50%, rgba(76, 57, 146, 0.86) -40.48deg, rgba(82, 38, 136, 0) 107.08deg, rgba(183, 110, 195, 0) 177.49deg, rgba(76, 57, 146, 0.86) 319.52deg, rgba(82, 38, 136, 0) 467.08deg)',
-          filter: 'blur(17px)',
-          borderRadius: '300px',
+          filter: ' blur(1.7vw)',
+          borderRadius: '30vw',
           transform: 'rotate(1.91deg)',
-          marginBottom: '15rem',
-          marginLeft: '-15rem',
-          marginRight: '10rem'
+          marginBottom: '30vh',
+          marginLeft: '-35vh',
+          marginRight: '10vw'
         },
         '.custom-blur-background': {
           boxSizing: 'border-box',
