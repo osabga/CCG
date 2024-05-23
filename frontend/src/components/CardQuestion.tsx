@@ -11,17 +11,27 @@ const CardQuestion = () => {
       answer: 'We offer a wide range of products that are designed to innovate your digital landscape.'
     },
     {
-      question: 'What are the products that you offer?',
-      answer: 'We offer a wide range of products that are designed to innovate your digital landscape.'
+      question:'Where can I find the pricing information?',
+      answer:'You can find the pricing information on our pricing page. We offer a wide range of products that are designed to innovate your digital landscape.'
+
     },
     {
-      question: 'What are the products that you offer?',
-      answer: 'We offer a wide range of products that are designed to innovate your digital landscape.'
+      question:'Do you offer a free trial?',
+      answer:'Yes, we offer a free trial for all our products. We offer a wide range of products that are designed to innovate your digital landscape.'
     },
     {
-      question: 'What are the products that you offer?',
-      answer: 'We offer a wide range of products that are designed to innovate your digital landscape.'
+      question:'What are the benefits of your products?',
+      answer:'Our products are designed to innovate your digital landscape. We offer a wide range of products that are designed to innovate your digital landscape.'
     },
+    {
+      question:'How can I contact you?',
+      answer:'You can contact us through our contact page. We offer a wide range of products that are designed to innovate your digital landscape.'
+    },
+    {
+      question:'Do you offer data solutions?',
+      answer:'Yes, we offer a wide range of data solutions that are designed to innovate your digital landscape. Unleash the power of information. We offer a wide range of products that are designed to innovate your digital landscape.'
+    }
+
   ];
 
   return (
