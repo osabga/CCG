@@ -1,15 +1,15 @@
-function Conversation({ question, answer }: any) {
+const Conversation = ({ question, answer }: { question: string, answer: string }) => {
     return (
-        <div>
-            <div className="bg-[#382c64] p-3 rounded-xl text-white m-4">
-                {question}
-            </div>
-
-            <div className="bg-[#382c64] p-3 rounded-xl text-white m-4">
-                {answer}
-            </div>
+      <div className="mb-4 flex flex-col">
+        <div className="self-end bg-[#382c64] text-white rounded-xl p-3 mb-2 inline-block max-w-full text-lg">
+          {question}
         </div>
+        <div className="self-start bg-[#5346A2] text-white rounded-xl p-3 mb-2 inline-block max-w-full text-lg">
+          {answer}
+        </div>
+      </div>
     );
-}
-
-export default Conversation;
+  };
+  
+  export default Conversation;
+  
