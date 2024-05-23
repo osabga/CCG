@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 interface SidebarProps {
   onNewChat: () => void;
@@ -34,14 +36,14 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
         <div className="mt-4">
           <ul className="space-y-2">
             <li>
-              <button className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
+            <Link to="/" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
                 <span className="flex-1 ml-3 whitespace-nowrap">Log out</span>
-              </button>
+              </Link>
             </li>
             <li>
-              <button className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
-                <span className="flex-1 ml-3 whitespace-nowrap">FAQs</span>
-              </button>
+            <Link to="/FrequentlyQuestions" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
+              <span className="flex-1 ml-3 whitespace-nowrap">FAQs</span>
+            </Link>
             </li>
           </ul>
         </div>
