@@ -161,7 +161,21 @@ export default {
         '.answer': {
           color: '#fff',
         },
-
+        '.hexagon': {
+          width: '350px',
+          height: '400px', /* Adjusted height to match the aspect ratio */
+          position: 'relative',
+          margin: '10px',
+          clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        '.hexagon-image': {
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain', /* Changed from cover to contain */
+        },
         
       };
       addUtilities(newUtilities, ['responsive', 'hover']);
