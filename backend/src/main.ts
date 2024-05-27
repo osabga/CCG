@@ -7,6 +7,10 @@ import Pregunta from "./Schema/pregunta";
 import Categoria from "./Schema/categoria";
 import { preguntasRouter } from "./Routes/preguntas";
 import { adminRouter } from "./Routes/admin";
+import {faqRouter} from "./Routes/faq";
+import {productoRouter} from "./Routes/productos";
+import {servicioRouter} from "./Routes/servicios"
+import { categoriasRouter } from "./Routes/categoria";
 
 /*
 número de usuarios activos 
@@ -73,3 +77,6 @@ app.get("/", (req: any,res: any) => { console.log(" helloo "); res.send("my api 
 app.use("/users", userRouter)
 app.use("/preguntas", preguntasRouter)
 app.use("/admin",adminRouter)
+app.use("/faq",faqRouter)
+app.use("/productos",productoRouter)
+app.use("/servicios",servicioRouter)
