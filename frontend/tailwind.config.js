@@ -162,20 +162,24 @@ export default {
           color: '#fff',
         },
         '.hexagon': {
-          width: '350px',
-          height: '400px', /* Adjusted height to match the aspect ratio */
           position: 'relative',
-          margin: '10px',
-          clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          width: '27vw', // Aumenta el tamaño del hexágono
+          height: '23.65vw', // Ajusta la altura del hexágono proporcionalmente
+          backgroundColor: 'transparent',
+          margin: '0', // Elimina margen
+          padding: '0', // Elimina padding
+          overflow: 'hidden',
+          clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
         },
         '.hexagon-image': {
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
           width: '100%',
           height: '100%',
-          objectFit: 'contain', /* Changed from cover to contain */
-        },
+          objectFit: 'cover',
+          transform: 'translate(-50%, -50%)',
+        }
         
       };
       addUtilities(newUtilities, ['responsive', 'hover']);
