@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import SpaceCatImage from '../assets/SpaceCat.png';
-import Sidebar from '../components/Sidebar';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Sidebar from '../components/Sidebar';
 import Conversation from '../components/Conversation';
+import SpaceCatImage from '../assets/SpaceCat.png';
 
 const ChatPage = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [visual, setVisual] = useState(false);
-  const [data, setData] = useState([] as any[]);
-  const [history, setHistory] = useState([] as any[]);
+  const [inputValue, setInputValue] = useState<string>('');
+  const [visual, setVisual] = useState<boolean>(false);
+  const [data, setData] = useState<any[]>([]);
+  const [history, setHistory] = useState<any[]>([]);
   const userId = "82d00a97-d923-4c5a-bc8e-e1684eff66a9";
 
   const fetchData = async (buttonText: string) => {
@@ -41,6 +41,10 @@ const ChatPage = () => {
     fetchHistory();
   }, []);
 
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
@@ -63,21 +67,17 @@ const ChatPage = () => {
     setData([]);
   };
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <div className="bg-gradient-to-d h-screen flex">
       <Sidebar onNewChat={handleNewChat} history={history} />
       <div className="flex flex-col w-full">
         <div className="flex flex-col items-center p-4">
-          <img src={SpaceCatImage} alt="NeoBot" className="mb-4 h-[4rem]" /> {/* Replace with your image */}
+          <img src={SpaceCatImage} alt="NeoBot" className="mb-4 h-[4rem]" />
           <h1 className="text-2xl text-white font-bold mb-8">Neora</h1>
         </div>
         {!visual && (
           <div className="flex-grow flex items-center justify-center">
-            <div className="grid grid-cols-3 gap-4"> {/* Changed grid-cols-2 to grid-cols-3 */}
+            <div className="grid grid-cols-3 gap-4">
               <button
                 className="bg-[#382c64] p-4 rounded-xl text-white shadow-md flex items-center justify-center"
                 style={{ height: '80px', width: '250px' }}
@@ -113,13 +113,12 @@ const ChatPage = () => {
               >
                 <span>Recommendations</span>
               </button>
-              {/* Add any additional buttons here */}
             </div>
           </div>
         )}
 
         {visual && (
-          <div className="flex-grow overflow-auto mb-4">
+          <div className="flex-grow overflow-auto mb-20">
             <div className="w-full max-w-3xl p-3">
               {data.map((item, index) => (
                 <div key={index}>
@@ -129,7 +128,8 @@ const ChatPage = () => {
             </div>
           </div>
         )}
-        <form onSubmit={handleClick} className="flex justify-between p-4 bg-gray-800 w-full fixed bottom-0 left-0 right-0">
+
+        <form onSubmit={handleClick} className="flex justify-between p-4 bg-gray-800 w-full fixed bottom-0 left-0 right-0 z-10">
           <input
             type="text"
             value={inputValue}
@@ -139,9 +139,6 @@ const ChatPage = () => {
           />
           <button type="submit" className="text-white px-4 py-2 rounded-sm bg-[#382c64]">
             Enviar
-          </button>
-          <button type="button" className="text-white px-4 py-2 rounded-sm bg-red-600 ml-2" onClick={handleNewChat}>
-            New Chat
           </button>
         </form>
       </div>

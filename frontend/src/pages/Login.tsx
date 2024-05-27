@@ -68,29 +68,32 @@ const Login = () => {
                 className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
               />
             </div>
-
-            <p className="text-gray-400 mb-8">
-            Forgot password? Reset password
-          </p>
             
             <div>
-            <button className="w-full p-4 text-white rounded font-bold hover:opacity-90 transition-opacity duration-300 bg-gradient-radial">
+            
+            <div className="flex justify-center">
+            <button className="admin-button relative z-10 px-6">
               Login
             </button>
+          </div>
             </div>
           </form>
           <p className="text-xs text-gray-400 text-center mt-4">
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ or ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          
           </p>
-          <div>
+          <p className="text-xs text-gray-400 text-center mt-4">
+          ━━━━ or ━━━━
+          </p>
+          <p className="text-xs text-gray-400 text-center mt-4">
+          
+          </p>
+          <div className="flex justify-center">
             <Link to='/Signup'>
-              <button
-                className="mb-4 mt-4 w-full p-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded font-bold hover:opacity-90 transition-opacity duration-300"
-              >
-                Create Account
+              <button className="admin-button relative z-10 px-6">
+                Create an account
               </button>
             </Link>
-            </div>
+          </div>
             <div>
     
             </div>
