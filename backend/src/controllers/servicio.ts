@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 
 export async function postServicio(req:Request,res:Response){
     try{
-    const body = req.body as {titulo?:string,subtitulo?:string,imagen?:any, date?:Date }
+    const body = req.body as {titulo?:string,subtitulo?:string,imagen?:string, date?:Date }
 
     if (!body || !body.titulo|| !body.subtitulo || !body.imagen || !body.date) {
         return res.status(400).json({ message: 'datos faltantes!'}); 

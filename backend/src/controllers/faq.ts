@@ -12,8 +12,6 @@ export async function postFaq(req:Request,res:Response){
         return res.status(400).json({ message: 'datos faltantes!'}); 
     }
 
-    
-
     const my_Faq= new Faq({
     
     pregunta:body.pregunta,

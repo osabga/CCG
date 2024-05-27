@@ -7,6 +7,12 @@ interface MonthlyResult {
     count: number;
 }
 
+interface DailyResult {
+    date: string;
+    count: number;
+}
+
+
 function getNextMonth(year: number, month: number): { year: number, month: number } {
     if (month === 12) {
         return { year: year + 1, month: 1 };
@@ -88,4 +94,42 @@ export async function getMonthly(req: Request, res: Response) {
     }
 
     return res.status(200).json(results);
+}
+
+export async function getDaily(req: Request, res: Response) {
+    const { tipo } = req.params;
+    const body = req.body as { date_begin?: string, date_end?: string };
+
+    if (!tipo || (tipo !== "usuarios" && tipo !== "preguntas")) {
+        return res.status(403).json({ message: "Tipo faltante o inválido" });
+    }
+
+    if (!body || !body.date_begin || !body.date_end) {
+        return res.status(400).json({ message: 'Fechas faltantes!' });
+    }
+
+    const startDate = new Date(body.date_begin);
+    const endDate = new Date(body.date_end);
+
+    const results: DailyResult[] = [];
+
+    let currentDate = startDate;
+
+    while (currentDate <= endDate) {
+        const dayStart = formatDate(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
+        const dayEnd = dayStart;
+
+        try {
+            const count = await getDataCount(tipo, dayStart, dayEnd);
+            results.push({ date: dayStart, count: count });
+        } catch (error) {
+            return res.status(500).json({ message: "Error retrieving data", error });
+        }
+
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    const filteredResults = results.slice(1);
+
+    return res.status(200).json(filteredResults);
 }
