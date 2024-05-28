@@ -1,7 +1,8 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";  
 import Header from "../components/Header";
 import login from "../assets/login.png";
 import axios from "axios";
-import { useState } from "react";
 
 interface FormData {
   firstName: string;
@@ -16,15 +17,18 @@ interface FormData {
 
 const Signup = () => {
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    password_confirm: '',
-    age: '',
-    country: '',
-    state: ''
+    firstName: 'Jaime',
+    lastName: 'Lara',
+    email: 'jaime@gmail.com',
+    password: '123',
+    password_confirm: '123',
+    age: '34',
+    country: 'Mexico',
+    state: 'Nuevo Leon'
   });
+
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate(); 
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -36,24 +40,37 @@ const Signup = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError(null);
+
     if (formData.password !== formData.password_confirm) {
-      console.error('Passwords do not match');
+      setError('Passwords do not match');
       return;
     }
 
-    const fullName = `${formData.firstName} ${formData.lastName}`;
-    console.log(`${formData.firstName} ${formData.lastName}`, formData.email, formData.password);
-
     try {
-      const response = await axios.post('https://backend-g52rzw1mh-gilva1s-projects.vercel.app/users/signup', {
-        name: fullName,
+      const response = await axios.post('https://neorisprueba.onrender.com/api/v1/register', {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
         email: formData.email,
-        password: formData.password
+        password: formData.password,
+        age: parseInt(formData.age, 10),
+        country: formData.country,
+        state: formData.state,
       });
 
-      console.log("front response:", response.data);
-    } catch (error) {
-      console.error('There was an error sending the data', error);
+      console.log("front response:", response);
+      navigate('/login');  
+    } catch (error: any) {
+      if (error.response) {
+        console.error('Server responded with an error:', error.response.data);
+        setError(error.response.data.message || 'An error occurred');
+      } else if (error.request) {
+        console.error('No response received:', error.request);
+        setError('No response from server');
+      } else {
+        console.error('Error setting up the request:', error.message);
+        setError(error.message);
+      }
     }
   };
 
@@ -62,19 +79,18 @@ const Signup = () => {
       <Header />
       <div className="flex items-center justify-center min-h-screen mt-11 pb-11">
         <div className="flex overflow-hidden max-w-5xl mx-auto rounded-lg shadow-xl">
-          {/* Contenedor del fondo de la izquierda */}
           <img className="w-1/2 bg-cover bg-no-repeat bg-center rounded-l-lg" src={login} alt="Login Background" />
-
-          {/* Contenedor del formulario de registro */}
           <div className="w-1/2 bg-gray-900 bg-opacity-90 p-10 rounded-r-lg">
             <h2 className="text-3xl text-white font-bold mb-6">Sign up</h2>
             <p className="text-gray-400 mb-8">
               Sign up now and gain access to exclusive content.
             </p>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <input
                   name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
                   type="text"
                   placeholder="First Name"
@@ -84,6 +100,7 @@ const Signup = () => {
               <div>
                 <input
                   name="lastName"
+                  value={formData.lastName}
                   onChange={handleChange}
                   type="text"
                   placeholder="Last Name"
@@ -93,6 +110,7 @@ const Signup = () => {
               <div>
                 <input
                   name="age"
+                  value={formData.age}
                   onChange={handleChange}
                   type="text"
                   placeholder="Age"
@@ -102,6 +120,7 @@ const Signup = () => {
               <div>
                 <input
                   name="country"
+                  value={formData.country}
                   onChange={handleChange}
                   type="text"
                   placeholder="Country"
@@ -111,6 +130,7 @@ const Signup = () => {
               <div>
                 <input
                   name="state"
+                  value={formData.state}
                   onChange={handleChange}
                   type="text"
                   placeholder="State"
@@ -120,6 +140,7 @@ const Signup = () => {
               <div>
                 <input
                   name="email"
+                  value={formData.email}
                   onChange={handleChange}
                   type="email"
                   placeholder="Email address"
@@ -129,6 +150,7 @@ const Signup = () => {
               <div>
                 <input
                   name="password"
+                  value={formData.password}
                   onChange={handleChange}
                   type="password"
                   placeholder="Password"
@@ -138,6 +160,7 @@ const Signup = () => {
               <div>
                 <input
                   name="password_confirm"
+                  value={formData.password_confirm}
                   onChange={handleChange}
                   type="password"
                   placeholder="Repeat your Password"

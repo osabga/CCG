@@ -13,6 +13,7 @@
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
     "i18next": "^23.11.5",
+    "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
     "react-chart": "^0.0.1",
     "react-chartjs-2": "^5.2.0",
