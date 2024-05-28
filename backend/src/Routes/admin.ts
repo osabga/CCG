@@ -1,5 +1,5 @@
 
-import { getData, getMonthly} from "../controllers/admin"
+import { getDaily, getData, getMonthly} from "../controllers/admin"
 
 // done basic means it works but needs more validations
 // done premium means fully done
@@ -12,7 +12,6 @@ adminRouter.post("/getData/:tipo", getData)
 
 adminRouter.post("/getData/monthly/:tipo",getMonthly)
 
-
-
+adminRouter.post("/getData/daily/:tipo",getDaily)
 
 export {adminRouter};

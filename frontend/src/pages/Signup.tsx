@@ -167,18 +167,18 @@ const Signup = () => {
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
-              <div>
+              <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="w-full p-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded font-bold hover:opacity-90 transition-opacity duration-300"
+                  className="admin-button relative z-10 px-6"
                 >
                   Sign Up
                 </button>
               </div>
             </form>
             <p className="text-xs text-gray-400 text-center mt-4">
-              By clicking sign up, you agree to our Terms of Service.
-            </p>
+            By clicking sign up, you agree to our <a href="/terms" className="underline text-blue-500">Terms and Conditions</a>.
+          </p>
           </div>
         </div>
       </div>
