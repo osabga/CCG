@@ -28,7 +28,7 @@ const Login = () => {
     formData.append('password', loginData.password);
 
     try {
-      const response = await axios.post('https://neorisprueba.onrender.com/token', formData, {
+      const response = await axios.post('https://neorisprueba.onrender.com/api/v1/token', formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
