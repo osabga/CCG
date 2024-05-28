@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";  // Importar useNavigate
+import { useNavigate } from "react-router-dom";  
 import Header from "../components/Header";
 import login from "../assets/login.png";
 import axios from "axios";
@@ -17,18 +17,18 @@ interface FormData {
 
 const Signup = () => {
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    password_confirm: '',
-    age: '',
-    country: '',
-    state: ''
+    firstName: 'Jaime',
+    lastName: 'Lara',
+    email: 'jaime@gmail.com',
+    password: '123',
+    password_confirm: '123',
+    age: '34',
+    country: 'Mexico',
+    state: 'Nuevo Leon'
   });
 
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();  // Crear una instancia de useNavigate
+  const navigate = useNavigate(); 
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -55,11 +55,11 @@ const Signup = () => {
         password: formData.password,
         age: parseInt(formData.age, 10),
         country: formData.country,
-        state: formData.state
+        state: formData.state,
       });
 
-      console.log("front response:", response.data);
-      navigate('/login');  // Redirigir al usuario a la página de LogIn
+      console.log("front response:", response);
+      navigate('/login');  
     } catch (error: any) {
       if (error.response) {
         console.error('Server responded with an error:', error.response.data);
@@ -90,6 +90,7 @@ const Signup = () => {
               <div>
                 <input
                   name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
                   type="text"
                   placeholder="First Name"
@@ -99,6 +100,7 @@ const Signup = () => {
               <div>
                 <input
                   name="lastName"
+                  value={formData.lastName}
                   onChange={handleChange}
                   type="text"
                   placeholder="Last Name"
@@ -108,6 +110,7 @@ const Signup = () => {
               <div>
                 <input
                   name="age"
+                  value={formData.age}
                   onChange={handleChange}
                   type="text"
                   placeholder="Age"
@@ -117,6 +120,7 @@ const Signup = () => {
               <div>
                 <input
                   name="country"
+                  value={formData.country}
                   onChange={handleChange}
                   type="text"
                   placeholder="Country"
@@ -126,6 +130,7 @@ const Signup = () => {
               <div>
                 <input
                   name="state"
+                  value={formData.state}
                   onChange={handleChange}
                   type="text"
                   placeholder="State"
@@ -135,6 +140,7 @@ const Signup = () => {
               <div>
                 <input
                   name="email"
+                  value={formData.email}
                   onChange={handleChange}
                   type="email"
                   placeholder="Email address"
@@ -144,6 +150,7 @@ const Signup = () => {
               <div>
                 <input
                   name="password"
+                  value={formData.password}
                   onChange={handleChange}
                   type="password"
                   placeholder="Password"
@@ -153,6 +160,7 @@ const Signup = () => {
               <div>
                 <input
                   name="password_confirm"
+                  value={formData.password_confirm}
                   onChange={handleChange}
                   type="password"
                   placeholder="Repeat your Password"
