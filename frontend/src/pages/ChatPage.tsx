@@ -13,11 +13,22 @@ const ChatPage = () => {
 
   const fetchData = async (buttonText: string) => {
     try {
+      const token = localStorage.getItem('token');
+      console.log(token)
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+
       const response = await axios.post('https://neorisprueba.onrender.com/api/v1/question/', {
         question: buttonText,
         answer: "",
         userId: userId,
       });
+
+      const example = await axios.get('https://neorisprueba.onrender.com/users/me', {headers});
+      console.log(example);
 
       if (response) {
         const answer = await axios.get(`https://neorisprueba.onrender.com/api/v1/response/${userId}`);
