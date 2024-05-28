@@ -1,37 +1,34 @@
 import { useEffect, useState } from 'react';
 import SpaceCatImage from '../assets/SpaceCat.png';
 import Sidebar from '../components/Sidebar';
-import axios from 'axios';
 import Conversation from '../components/Conversation';
+import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
 
 const ChatPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [visual, setVisual] = useState(false);
   const [data, setData] = useState([] as any[]);
   const [history, setHistory] = useState([] as any[]);
-  const userId = "82d00a97-d923-4c5a-bc8e-e1684eff66a9";
+  const [userId, setUserId] = useState('');
 
-  const fetchData = async (buttonText: string) => {
+  const getToken = () => localStorage.getItem('token');
+
+  const headers = {
+    Authorization: `Bearer ${getToken()}`,
+    'Content-Type': 'application/json',
+  };
+
+  const fetchData = async (buttonText: string, userId: string) => {
     try {
-      const token = localStorage.getItem('token');
-      console.log(token)
-
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-
-      const response = await axios.post('https://neorisprueba.onrender.com/api/v1/question/', {
+      const response = await axios.post('https://neorisprueba.onrender.com/api/v1/question', {
         question: buttonText,
-        answer: "",
+        answer: '',
         userId: userId,
-      });
-
-      const example = await axios.get('https://neorisprueba.onrender.com/users/me', {headers});
-      console.log(example);
+      }, { headers });
 
       if (response) {
-        const answer = await axios.get(`https://neorisprueba.onrender.com/api/v1/response/${userId}`);
+        const answer = await axios.get(`https://neorisprueba.onrender.com/api/v1/response/${userId}`, { headers });
         setData([...data, { question: buttonText, answer: answer.data.response }]);
       }
     } catch (error) {
@@ -39,9 +36,9 @@ const ChatPage = () => {
     }
   };
 
-  const fetchHistory = async () => {
+  const fetchHistory = async (userId: string) => {
     try {
-      const response = await axios.get(`https://neorisprueba.onrender.com/api/v1/history/${userId}`);
+      const response = await axios.get(`https://neorisprueba.onrender.com/api/v1/history/${userId}`, { headers });
       setHistory(response.data);
     } catch (error) {
       console.error('There was an error fetching the chat history', error);
@@ -49,7 +46,16 @@ const ChatPage = () => {
   };
 
   useEffect(() => {
-    fetchHistory();
+    const initializeUser = async () => {
+      const token = getToken();
+      if (token) {
+        const decodedToken: any = jwtDecode(token);
+        setUserId(decodedToken.id);
+        fetchHistory(decodedToken.id);
+      }
+    };
+
+    initializeUser();
   }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,13 +66,13 @@ const ChatPage = () => {
     event.preventDefault();
     setVisual(true);
     setInputValue('');
-    fetchData(inputValue);
+    fetchData(inputValue, userId);
   };
 
   const handleButtonClick = async (buttonText: string) => {
     setVisual(true);
     setInputValue('');
-    fetchData(buttonText);
+    fetchData(buttonText, userId);
   };
 
   const handleNewChat = () => {
@@ -92,35 +98,35 @@ const ChatPage = () => {
               <button
                 className="bg-[#382c64] p-4 rounded-xl text-white shadow-md flex items-center justify-center"
                 style={{ height: '80px', width: '250px' }}
-                onClick={() => handleButtonClick("What is NEORIS?")}
+                onClick={() => handleButtonClick('What is NEORIS?')}
               >
                 <span>What is NEORIS?</span>
               </button>
               <button
                 className="bg-[#382c64] p-4 rounded-xl text-white shadow-md flex items-center justify-center"
                 style={{ height: '80px', width: '250px' }}
-                onClick={() => handleButtonClick("Which are the services of NEORIS?")}
+                onClick={() => handleButtonClick('Which are the services of NEORIS?')}
               >
                 <span>Which are the services of NEORIS?</span>
               </button>
               <button
                 className="bg-[#382c64] p-4 rounded-xl text-white shadow-md flex items-center justify-center"
                 style={{ height: '80px', width: '250px' }}
-                onClick={() => handleButtonClick("NEORISES Products")}
+                onClick={() => handleButtonClick('NEORISES Products')}
               >
                 <span>NEORISES Products</span>
               </button>
               <button
                 className="bg-[#382c64] p-4 rounded-xl text-white shadow-md flex items-center justify-center"
                 style={{ height: '80px', width: '250px' }}
-                onClick={() => handleButtonClick("NEORISES Certificates")}
+                onClick={() => handleButtonClick('NEORISES Certificates')}
               >
                 <span>NEORISES Certificates</span>
               </button>
               <button
                 className="bg-[#382c64] p-4 rounded-xl text-white shadow-md flex items-center justify-center"
                 style={{ height: '80px', width: '250px' }}
-                onClick={() => handleButtonClick("Recommendations")}
+                onClick={() => handleButtonClick('Recommendations')}
               >
                 <span>Recommendations</span>
               </button>
@@ -140,7 +146,10 @@ const ChatPage = () => {
             </div>
           </div>
         )}
-        <form onSubmit={handleClick} className="flex justify-between p-4 bg-gray-800 w-full fixed bottom-0 left-0 right-0">
+        <form
+          onSubmit={handleClick}
+          className="flex justify-between p-4 bg-gray-800 w-full fixed bottom-0 left-0 right-0"
+        >
           <input
             type="text"
             value={inputValue}
