@@ -3,6 +3,7 @@ import SpaceCatImage from '../assets/SpaceCat.png';
 import Sidebar from '../components/Sidebar';
 import Conversation from '../components/Conversation';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 
 const ChatPage = () => {
@@ -88,10 +89,12 @@ const ChatPage = () => {
     <div className="bg-gradient-to-d h-screen flex">
       <Sidebar onNewChat={handleNewChat} history={history} />
       <div className="flex flex-col w-full">
-        <div className="flex flex-col items-center p-4">
-          <img src={SpaceCatImage} alt="NeoBot" className="mb-4 h-[4rem]" /> {/* Replace with your image */}
-          <h1 className="text-2xl text-white font-bold mb-8">Neora</h1>
-        </div>
+      <Link to="/">
+          <div className="flex flex-col items-center p-4 cursor-pointer">
+            <img src={SpaceCatImage} alt="NeoBot" className="mb-4 h-[4rem]" /> {/* Replace with your image */}
+            <h1 className="text-2xl text-white font-bold mb-8">Neora</h1>
+          </div>
+      </Link>
         {!visual && (
           <div className="flex-grow flex items-center justify-center">
             <div className="grid grid-cols-3 gap-4"> {/* Changed grid-cols-2 to grid-cols-3 */}
@@ -130,26 +133,27 @@ const ChatPage = () => {
               >
                 <span>Recommendations</span>
               </button>
-              {/* Add any additional buttons here */}
+              <button
+                className="bg-[#382c64] p-4 rounded-xl text-white shadow-md flex items-center justify-center"
+                style={{ height: '80px', width: '250px' }}
+                onClick={() => handleButtonClick('Recommendations')}
+              >
+                <span>Ecommerce services </span>
+              </button>
             </div>
           </div>
         )}
 
-        {visual && (
-          <div className="flex-grow overflow-auto mb-4">
-            <div className="w-full max-w-3xl p-3">
+{visual && (
+          <div className="flex-grow overflow-auto mb-2 flex flex-col items-center">
+            <div className="w-full max-w-5xl p-2"> {/* Changed max-w-5xl to max-w-6xl */}
               {data.map((item, index) => (
-                <div key={index}>
-                  <Conversation question={item.question} answer={item.answer} />
-                </div>
+                <Conversation key={index} question={item.question} answer={item.answer} />
               ))}
             </div>
           </div>
         )}
-        <form
-          onSubmit={handleClick}
-          className="flex justify-between p-4 bg-gray-800 w-full fixed bottom-0 left-0 right-0"
-        >
+        <form onSubmit={handleClick} className="flex justify-between mt-[4rem] mb-[-5rem]">
           <input
             type="text"
             value={inputValue}
@@ -158,11 +162,8 @@ const ChatPage = () => {
             placeholder="Escribe tu pregunta..."
           />
           <button type="submit" className="text-white px-4 py-2 rounded-sm bg-[#382c64]">
-            Enviar
-          </button>
-          <button type="button" className="text-white px-4 py-2 rounded-sm bg-red-600 ml-2" onClick={handleNewChat}>
-            New Chat
-          </button>
+              Enviar
+            </button>
         </form>
       </div>
     </div>
