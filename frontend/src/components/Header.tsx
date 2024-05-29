@@ -50,11 +50,11 @@ const Header: React.FC = () => {
                                 )}
                             </li>
                             <li>
-                            <button className="admin-button hidden lg:block mr-0">
-                            <Link to="/login">
-                                Logout
-                            </Link>
-                        </button>
+                            <button className="admin-button hidden lg:block pb-4 mr-0">
+                                <Link to="/login">
+                                    Login
+                                </Link>
+                            </button>
                             </li>
                         </ul>
                     </div>
