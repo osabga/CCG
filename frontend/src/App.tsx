@@ -23,7 +23,7 @@ function App() {
             <Route path='/Login' element={ <Login/> }/>
             <Route path='/RestorePassword' element={ <RestorePassword/> }/>
             <Route path='/AddQuestion' element={ <AddQuestion/> }/>
-            <Route path='/EditQuestion' element={ <EditQuestions/> }/>
+            <Route path='/EditQuestions' element={ <EditQuestions/> }/>
             <Route path='/ChatPage' element={ <ChatPage/> }/>
             <Route path='/FrequentlyQuestions' element={ <FrequentlyQuestions/> }/>
             <Route path='/Dashboard' element={ <Dashboard/> }/>
