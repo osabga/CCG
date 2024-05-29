@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "../components/Header";
 import login from "../assets/login.png";
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
 
 interface LoginData {
   email: string;
@@ -12,12 +13,25 @@ interface LoginData {
 const Login = () => {
   const [loginData, setLoginData] = useState<LoginData>({ email: '', password: '' });
   const [error, setError] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<string>(''); 
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setLoginData({ ...loginData, [name]: value });
   };
+
+  useEffect(() => {
+    const initializeUser = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const decodedToken: any = jwtDecode(token);
+        setUserRole(decodedToken.role);
+      }
+    };
+
+    initializeUser();
+  }, []);
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -40,7 +54,12 @@ const Login = () => {
       localStorage.setItem('token', response.data.access_token);
 
       // Redirect the user to the chat page
-      navigate('/ChatPage'); 
+      if (userRole === 'admin'){
+        navigate('/Dashboard');
+      } else {
+        navigate('/ChatPage'); 
+      }
+      
     } catch (error: any) {
       console.error('Error logging in:', error);
       if (error.response) {
