@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import NeorisLogo from '../assets/NEORIS logo light.png';
 import { Link } from 'react-router-dom';
 import arrow from '../assets/flecha-hacia-abajo.png';
+import { useTranslation } from 'react-i18next';
 
 const Header: React.FC = () => {
+    const { t, i18n } = useTranslation();
     const [showDropdown, setShowDropdown] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);  // State to manage the mobile menu visibility
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const changeLanguage = (language: string) => {
+        i18n.changeLanguage(language);
+    };
 
     return (
         <header>
@@ -18,43 +24,43 @@ const Header: React.FC = () => {
                         <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                             <span className="sr-only">Open main menu</span>
                             {isMenuOpen ? (
-                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                             ) : (
-                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
                             )}
                         </button>
                     </div>
                     <div className={`${isMenuOpen ? "flex" : "hidden"} justify-between items-center w-full lg:flex lg:w-auto lg:order-1 lg:justify-end`} id="mobile-menu-2">
                         <ul className="flex flex-col mt-4 font-light lg:flex-row lg:space-x-8 lg:mt-0 text-m lg:items-center">
                             <li>
-                                <a href="/Products" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">Products</a>
+                                <a href="/Products" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">{t('products')}</a>
                             </li>
                             <li>
-                                <a href="/Services" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">Services</a>
+                                <a href="/Services" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">{t('services')}</a>
                             </li>
                             <li>
-                                <a href="/FrequentlyQuestions" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">FAQs</a>
+                                <a href="/FrequentlyQuestions" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">{t('faqs')}</a>
                             </li>
                             <li className="relative" onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
                                 <button className="flex items-center py-3 pr-3 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">
-                                    Select Language
+                                    {t('select_language')}
                                     {showDropdown ? (
                                         <img src={arrow} className="ml-3" alt="Dropdown Arrow" />
                                     ) : null}
                                 </button>
                                 {showDropdown && (
-                                    <ul className="absolute rounded shadow-md py-2 mt-1 z-10 border border-white" >
-                                        <li><a href="#" className="block px-4 py-2 text-sm text-white hover:bg-blue-900">English</a></li>
-                                        <li><a href="#" className="block px-4 py-2 text-sm text-white hover:bg-blue-900">Español</a></li>
+                                    <ul className="absolute rounded shadow-md py-2 mt-1 z-10 border border-white">
+                                        <li><button onClick={() => changeLanguage('en')} className="block px-4 py-2 text-sm text-white hover:bg-blue-900">{t('english')}</button></li>
+                                        <li><button onClick={() => changeLanguage('es')} className="block px-4 py-2 text-sm text-white hover:bg-blue-900">{t('spanish')}</button></li>
                                     </ul>
                                 )}
                             </li>
                             <li>
-                            <button className="admin-button hidden lg:block pb-4 mr-0">
-                                <Link to="/login">
-                                    Login
-                                </Link>
-                            </button>
+                                <button className="admin-button hidden lg:block pb-4 mr-0">
+                                    <Link to="/login">
+                                        {t('login')}
+                                    </Link>
+                                </button>
                             </li>
                         </ul>
                     </div>
