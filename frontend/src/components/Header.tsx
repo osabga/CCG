@@ -1,16 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NeorisLogo from '../assets/NEORIS logo light.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import arrow from '../assets/flecha-hacia-abajo.png';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
 
 const Header: React.FC = () => {
     const { t, i18n } = useTranslation();
     const [showDropdown, setShowDropdown] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, []);
 
     const changeLanguage = (language: string) => {
         i18n.changeLanguage(language);
+    };
+
+    const handleLogout = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+        
+        const decodedToken: any = jwtDecode(token);
+        const userId = decodedToken.id;
+        
+        localStorage.removeItem('token');
+        try {
+            await axios.put(`https://neorisprueba.onrender.com/api/v1/logout/${userId}`);
+            navigate('/');
+            window.location.reload();
+        } catch (error) {
+            console.error('There was an error sending the data', error);
+        }
     };
 
     return (
@@ -56,11 +84,17 @@ const Header: React.FC = () => {
                                 )}
                             </li>
                             <li>
-                                <button className="admin-button hidden lg:block pb-4 mr-0">
-                                    <Link to="/login">
-                                        {t('login')}
-                                    </Link>
-                                </button>
+                                {isLoggedIn ? (
+                                    <button onClick={handleLogout} className="admin-button hidden lg:block pb-4 mr-0">
+                                        {t('logout')}
+                                    </button>
+                                ) : (
+                                    <button className="admin-button hidden lg:block pb-4 mr-0">
+                                        <Link to="/login">
+                                            {t('login')}
+                                        </Link>
+                                    </button>
+                                )}
                             </li>
                         </ul>
                     </div>
