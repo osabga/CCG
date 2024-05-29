@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 
 interface SidebarProps {
   onNewChat: () => void;
@@ -8,6 +8,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
+  const { t } = useTranslation();
+
   return (
     <aside className="w-64" aria-label="Sidebar">
       <div className="overflow-y-auto py-4 px-3 bg-[#E9EFFA0F] rounded h-screen flex flex-col justify-between">
@@ -18,15 +20,15 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
                 className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg"
                 onClick={onNewChat}
               >
-                <span className="flex-1 ml-3 whitespace-nowrap">+ New chat</span>
+                <span className="flex-1 ml-3 whitespace-nowrap">{t('new_chat')}</span>
               </button>
             </li>
           </ul>
-          <div className="border-t border-white my-4"></div> {/* White border */}
-          <ul className="space-y-2 overflow-y-auto max-h-80"> {/* Set max height and overflow */}
+          <div className="border-t border-white my-4"></div>
+          <ul className="space-y-2 overflow-y-auto max-h-80">
             {history.map((item) => (
               <li key={item._id}>
-                <div className="flex items-center p-2 text-base font-normal text-white bg-gray-800 rounded-lg">
+                <div className="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-purple-800">
                   <span className="flex-1 ml-3 whitespace-nowrap">{item.question}</span>
                 </div>
               </li>
@@ -36,14 +38,14 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
         <div className="mt-4">
           <ul className="space-y-2">
             <li>
-            <Link to="/" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
-                <span className="flex-1 ml-3 whitespace-nowrap">Log out</span>
+              <Link to="/" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
+                <span className="flex-1 ml-3 whitespace-nowrap">{t('logout')}</span>
               </Link>
             </li>
             <li>
-            <Link to="/FrequentlyQuestions" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
-              <span className="flex-1 ml-3 whitespace-nowrap">FAQs</span>
-            </Link>
+              <Link to="/FrequentlyQuestions" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
+                <span className="flex-1 ml-3 whitespace-nowrap">{t('faqs')}</span>
+              </Link>
             </li>
           </ul>
         </div>
