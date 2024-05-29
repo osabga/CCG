@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Header from '../components/Header';
 import Chart from '../components/Chart';
 import BarChart from '../components/BarChart';
@@ -7,35 +8,56 @@ import Widget from '../components/Widget';
 import QuestionsTable from '../components/QuestionsTable';
 import adminBackgroundImage from '../assets/AdminFoto.jpeg';
 
+interface Question {
+  _id: string;
+  question: string;
+  answer: string;
+}
+
 function Dashboard() {
   const navigate = useNavigate();
+  const getToken = () => localStorage.getItem('token');
+  const headers = {
+    Authorization: `Bearer ${getToken()}`,
+    'Content-Type': 'application/json',
+  };
 
-  const [questions, setQuestions] = useState([
-    { question: "What is NEORIS?", answer: "NEORIS is a Digital Accelerator that helps companies step into the future." },
-    { question: "NEORIS Cloud Services", answer: "Move to the Cloud, Advanced Analytics and AI & Hyperautomation" },
-  ]);
-
+  const [faqQuestions, setFaqQuestions] = useState<Question[]>([]);
   const [mostAskedQuestions, setMostAskedQuestions] = useState([
     { question: "What is NEORIS?", count: 150 },
     { question: "NEORIS Cloud Services", count: 120 },
     { question: "Future of AI in business", count: 90 },
- 
-    
   ]);
-  
+
+  useEffect(() => {
+    axios.get('https://neorisprueba.onrender.com/api/v1/faqs/', { headers })
+      .then(response => {
+        console.log('Received FAQ questions:', response.data); // Registro de depuración
+        setFaqQuestions(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the FAQ questions!', error);
+      });
+  }, []);
 
   const handleAddQuestion = () => {
-    // Logic to add a new question
+    navigate('/AddQuestion'); // Navigate to the NewQuestion page
   };
 
-  const handleEditQuestion = (index: number) => {
-    // Logic to edit a question at a specific index
+  const handleEditQuestion = (question: Question) => { // Define el tipo de question
+    navigate('/EditQuestions', { state: { question } }); // Navega al componente EditQuestions pasando la pregunta completa
   };
 
-  const handleDeleteQuestion = (index: number) => {
-    // Logic to delete a question
-    const updatedQuestions = questions.filter((_, i) => i !== index);
-    setQuestions(updatedQuestions);
+  const handleDeleteQuestion = (id: string) => { // Define el tipo de id
+    axios.delete(`https://neorisprueba.onrender.com/api/v1/faq/${id}`, { headers })
+      .then(response => {
+        console.log('Question deleted successfully!', response);
+        // Actualizar el estado inmediatamente después de la eliminación
+        setFaqQuestions(prevFaqQuestions => prevFaqQuestions.filter(question => question._id !== id));
+      })
+      .catch(error => {
+        console.error('There was an error deleting the question!', error);
+      });
   };
 
   return (
@@ -49,7 +71,7 @@ function Dashboard() {
               backgroundImage: `url(${adminBackgroundImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              minHeight: "200px", // Aumentado para asegurar visibilidad
+              minHeight: "200px",
               color: "#FFFFFF",
             }}
           >
@@ -60,15 +82,14 @@ function Dashboard() {
               Glad to see you again! Ask me anything.
             </p>
             <p className="block md:hidden">Welcome back!</p>
-            <button className="mt-2 lg:mt-4  hover:bg-purple-800 text-white font-bold py-2 px-4 rounded"
-            onClick={() => navigate('/ChatPage')}>
+            <button className="mt-2 lg:mt-4 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded"
+              onClick={() => navigate('/ChatPage')}>
               Tap to ask →
-              
             </button>
           </div>
           <div className="w-full mt-4 mb-11">
-  <BarChart data={mostAskedQuestions} />
-</div>
+            <BarChart data={mostAskedQuestions} />
+          </div>
         </div>
 
         <div className="w-full lg:w-1/2 px-2 lg:px-4">
@@ -87,7 +108,7 @@ function Dashboard() {
 
       <div className="px-4 py-6">
         <QuestionsTable
-          questions={questions}
+          questions={faqQuestions}
           onAdd={handleAddQuestion}
           onEdit={handleEditQuestion}
           onDelete={handleDeleteQuestion}
