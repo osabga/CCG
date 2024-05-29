@@ -26,7 +26,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
           <ul className="space-y-2 overflow-y-auto max-h-80"> {/* Set max height and overflow */}
             {history.map((item) => (
               <li key={item._id}>
-                <div className="flex items-center p-2 text-base font-normal text-white bg-gray-800 rounded-lg">
+                <div className="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-purple-800">
                   <span className="flex-1 ml-3 whitespace-nowrap">{item.question}</span>
                 </div>
               </li>
