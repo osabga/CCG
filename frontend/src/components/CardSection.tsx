@@ -1,26 +1,30 @@
+import React from 'react';
 import Img1 from '../assets/img1.png';
 import Img2 from '../assets/img2.png';
 import Img3 from '../assets/img3.png';
+import { useTranslation } from 'react-i18next';
 
 const CardSection = () => {
+  const { t } = useTranslation();
+
   const cardInfo = [
     {
-      title: 'Products',
-      description: 'Mastering Mexico\'s Technology Future. Discover our range of revolutionary products designed to innovate your digital landscape. Unleash the power of information...',
+      title: t('products_title'),
+      description: t('products_description'),
       imgSrc: Img1,
-      buttonText: 'Learn More'
+      buttonText: t('learn_more')
     },
     {
-      title: 'Services',
-      description: 'Streamlining Collaborative Workflows. Breathe your business with our comprehensive suite of expert services. From consultation to implementation, we...',
+      title: t('services_title'),
+      description: t('services_description'),
       imgSrc: Img2,
-      buttonText: 'Explore Now'
+      buttonText: t('explore_now')
     },
     {
-      title: 'FAQs',
-      description: 'Unraveling the Mystery of Version. Find answers to common queries about our products and services. Empower yourself with knowledge to enhance experiences...',
+      title: t('faqs_title'),
+      description: t('faqs_description'),
       imgSrc: Img3,
-      buttonText: 'View FAQs'
+      buttonText: t('view_faqs')
     }
   ];
 

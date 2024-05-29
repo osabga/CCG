@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";  
 import Header from "../components/Header";
 import login from "../assets/login.png";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 interface FormData {
   firstName: string;
@@ -16,6 +17,7 @@ interface FormData {
 }
 
 const Signup = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     firstName: 'Jaime',
     lastName: 'Lara',
@@ -43,7 +45,7 @@ const Signup = () => {
     setError(null);
 
     if (formData.password !== formData.password_confirm) {
-      setError('Passwords do not match');
+      setError(t('error_password_mismatch'));
       return;
     }
 
@@ -63,10 +65,10 @@ const Signup = () => {
     } catch (error: any) {
       if (error.response) {
         console.error('Server responded with an error:', error.response.data);
-        setError(error.response.data.message || 'An error occurred');
+        setError(error.response.data.message || t('error_generic'));
       } else if (error.request) {
         console.error('No response received:', error.request);
-        setError('No response from server');
+        setError(t('error_no_response'));
       } else {
         console.error('Error setting up the request:', error.message);
         setError(error.message);
@@ -81,9 +83,9 @@ const Signup = () => {
         <div className="flex overflow-hidden max-w-5xl mx-auto rounded-lg shadow-xl">
           <img className="w-1/2 bg-cover bg-no-repeat bg-center rounded-l-lg" src={login} alt="Login Background" />
           <div className="w-1/2 bg-gray-900 bg-opacity-90 p-10 rounded-r-lg">
-            <h2 className="text-3xl text-white font-bold mb-6">Sign up</h2>
+            <h2 className="text-3xl text-white font-bold mb-6">{t('signup_title')}</h2>
             <p className="text-gray-400 mb-8">
-              Sign up now and gain access to exclusive content.
+              {t('signup_subtitle')}
             </p>
             {error && <p className="text-red-500 mb-4">{error}</p>}
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -93,7 +95,7 @@ const Signup = () => {
                   value={formData.firstName}
                   onChange={handleChange}
                   type="text"
-                  placeholder="First Name"
+                  placeholder={t('first_name')}
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
@@ -103,7 +105,7 @@ const Signup = () => {
                   value={formData.lastName}
                   onChange={handleChange}
                   type="text"
-                  placeholder="Last Name"
+                  placeholder={t('last_name')}
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
@@ -113,7 +115,7 @@ const Signup = () => {
                   value={formData.age}
                   onChange={handleChange}
                   type="text"
-                  placeholder="Age"
+                  placeholder={t('age')}
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
@@ -123,7 +125,7 @@ const Signup = () => {
                   value={formData.country}
                   onChange={handleChange}
                   type="text"
-                  placeholder="Country"
+                  placeholder={t('country')}
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
@@ -133,7 +135,7 @@ const Signup = () => {
                   value={formData.state}
                   onChange={handleChange}
                   type="text"
-                  placeholder="State"
+                  placeholder={t('state')}
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
@@ -143,7 +145,7 @@ const Signup = () => {
                   value={formData.email}
                   onChange={handleChange}
                   type="email"
-                  placeholder="Email address"
+                  placeholder={t('email')}
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
@@ -153,7 +155,7 @@ const Signup = () => {
                   value={formData.password}
                   onChange={handleChange}
                   type="password"
-                  placeholder="Password"
+                  placeholder={t('password')}
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
@@ -163,7 +165,7 @@ const Signup = () => {
                   value={formData.password_confirm}
                   onChange={handleChange}
                   type="password"
-                  placeholder="Repeat your Password"
+                  placeholder={t('password_confirm')}
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
@@ -172,13 +174,13 @@ const Signup = () => {
                   type="submit"
                   className="admin-button relative z-10 px-6"
                 >
-                  Sign Up
+                  {t('signup_button')}
                 </button>
               </div>
             </form>
             <p className="text-xs text-gray-400 text-center mt-4">
-            By clicking sign up, you agree to our <a href="/terms" className="underline text-blue-500">Terms and Conditions</a>.
-          </p>
+              {t('signup_agreement')} <a href="/terms" className="underline text-blue-500">{t('terms_and_conditions')}</a>.
+            </p>
           </div>
         </div>
       </div>

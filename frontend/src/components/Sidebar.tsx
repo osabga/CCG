@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
-
+import { useTranslation } from 'react-i18next';
 
 interface SidebarProps {
   onNewChat: () => void;
@@ -39,6 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
     }
 
   };
+  const { t } = useTranslation();
 
   return (
     <aside className="w-64" aria-label="Sidebar">
@@ -50,15 +51,15 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
                 className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg"
                 onClick={onNewChat}
               >
-                <span className="flex-1 ml-3 whitespace-nowrap">+ New chat</span>
+                <span className="flex-1 ml-3 whitespace-nowrap">{t('new_chat')}</span>
               </button>
             </li>
           </ul>
-          <div className="border-t border-white my-4"></div> {/* White border */}
-          <ul className="space-y-2 overflow-y-auto max-h-80"> {/* Set max height and overflow */}
+          <div className="border-t border-white my-4"></div>
+          <ul className="space-y-2 overflow-y-auto max-h-80">
             {history.map((item) => (
               <li key={item._id}>
-                <div className="flex items-center p-2 text-base font-normal text-white bg-gray-800 rounded-lg">
+                <div className="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-purple-800">
                   <span className="flex-1 ml-3 whitespace-nowrap">{item.question}</span>
                 </div>
               </li>
