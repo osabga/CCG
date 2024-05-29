@@ -1,5 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 
 interface SidebarProps {
@@ -8,13 +10,43 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
+  const [userId, setUserId] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const initializeUser = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const decodedToken: any = jwtDecode(token);
+        setUserId(decodedToken.id);
+      }
+    };
+
+    initializeUser();
+  }, []);
+
+  const handleLogout = async () => {
+    localStorage.removeItem('token');
+    
+    try {
+      const response = await axios.put(`https://neorisprueba.onrender.com/api/v1/logout/${userId}`);
+      console.log(response.data);
+      navigate('/');
+      window.location.reload();
+    }
+    catch (error) {
+      console.error('There was an error sending the data', error);
+    }
+
+  };
+
   return (
     <aside className="w-64" aria-label="Sidebar">
       <div className="overflow-y-auto py-4 px-3 bg-[#E9EFFA0F] rounded h-screen flex flex-col justify-between">
         <div>
           <ul className="space-y-2">
             <li>
-              <button 
+              <button
                 className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg"
                 onClick={onNewChat}
               >
@@ -36,14 +68,17 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
         <div className="mt-4">
           <ul className="space-y-2">
             <li>
-            <Link to="/" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
+              <button
+                onClick={handleLogout}
+                className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg"
+              >
                 <span className="flex-1 ml-3 whitespace-nowrap">Log out</span>
-              </Link>
+              </button>
             </li>
             <li>
-            <Link to="/FrequentlyQuestions" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
-              <span className="flex-1 ml-3 whitespace-nowrap">FAQs</span>
-            </Link>
+              <Link to="/FrequentlyQuestions" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
+                <span className="flex-1 ml-3 whitespace-nowrap">FAQs</span>
+              </Link>
             </li>
           </ul>
         </div>
