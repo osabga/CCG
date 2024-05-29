@@ -24,15 +24,11 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const initializeUser = async () => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        const decodedToken: any = jwtDecode(token);
-        setUserRole(decodedToken.role);
-      }
-    };
-
-    initializeUser();
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      setUserRole(decodedToken.role);
+    }
   }, []);
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -55,8 +51,13 @@ const Login = () => {
       // Save the token in local storage (or another secure place)
       localStorage.setItem('token', response.data.access_token);
 
-      // Redirect the user to the chat page
-      if (userRole === 'admin'){
+      // Decode the token and get user role
+      const decodedToken: any = jwtDecode(response.data.access_token);
+      const role = decodedToken.role;
+      setUserRole(role);
+
+      // Redirect the user based on their role
+      if (role === 'admin'){
         navigate('/Dashboard');
       } else {
         navigate('/ChatPage'); 
