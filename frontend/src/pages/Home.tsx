@@ -1,6 +1,7 @@
 import Header from '../components/Header';
 import SpaceCatImage from '../assets/SpaceCat.png';
 import CardSection from '../components/CardSection';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -17,9 +18,12 @@ const Home = () => {
           </p>
           <div className="relative flex items-center">
             <div className="hero-blur absolute inset-0 rounded-full" />
+            <Link to='/Signup'>
             <button className="admin-button relative z-10 px-6">
               Get Started
             </button>
+            </Link>
+      
           </div>
         </div>
         <div className="relative flex items-center h-screen justify-center lg:flex hidden">
