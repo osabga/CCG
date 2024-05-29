@@ -1,5 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 import { useTranslation } from 'react-i18next';
 
 interface SidebarProps {
@@ -8,6 +10,35 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
+  const [userId, setUserId] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const initializeUser = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const decodedToken: any = jwtDecode(token);
+        setUserId(decodedToken.id);
+      }
+    };
+
+    initializeUser();
+  }, []);
+
+  const handleLogout = async () => {
+    localStorage.removeItem('token');
+    
+    try {
+      const response = await axios.put(`https://neorisprueba.onrender.com/api/v1/logout/${userId}`);
+      console.log(response.data);
+      navigate('/');
+      window.location.reload();
+    }
+    catch (error) {
+      console.error('There was an error sending the data', error);
+    }
+
+  };
   const { t } = useTranslation();
 
   return (
@@ -16,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
         <div>
           <ul className="space-y-2">
             <li>
-              <button 
+              <button
                 className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg"
                 onClick={onNewChat}
               >
@@ -38,13 +69,16 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
         <div className="mt-4">
           <ul className="space-y-2">
             <li>
-              <Link to="/" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
-                <span className="flex-1 ml-3 whitespace-nowrap">{t('logout')}</span>
-              </Link>
+              <button
+                onClick={handleLogout}
+                className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg"
+              >
+                <span className="flex-1 ml-3 whitespace-nowrap">Log out</span>
+              </button>
             </li>
             <li>
               <Link to="/FrequentlyQuestions" className="flex items-center p-2 text-xl font-normal text-white hover:bg-purple-800 rounded-lg">
-                <span className="flex-1 ml-3 whitespace-nowrap">{t('faqs')}</span>
+                <span className="flex-1 ml-3 whitespace-nowrap">FAQs</span>
               </Link>
             </li>
           </ul>
