@@ -7,6 +7,7 @@ import BarChart from '../components/BarChart';
 import Widget from '../components/Widget';
 import QuestionsTable from '../components/QuestionsTable';
 import adminBackgroundImage from '../assets/AdminFoto.jpeg';
+import { useFaqs } from '../components/FaqContext';
 
 interface Question {
   _id: string;
@@ -22,7 +23,8 @@ function Dashboard() {
     'Content-Type': 'application/json',
   };
 
-  const [faqQuestions, setFaqQuestions] = useState<Question[]>([]);
+  const { faqs, updateFaqs } = useFaqs();
+
   const [mostAskedQuestions, setMostAskedQuestions] = useState([
     { question: "What is NEORIS?", count: 150 },
     { question: "NEORIS Cloud Services", count: 120 },
@@ -33,7 +35,7 @@ function Dashboard() {
     axios.get('https://neorisprueba.onrender.com/api/v1/faqs/', { headers })
       .then(response => {
         console.log('Received FAQ questions:', response.data); // Registro de depuración
-        setFaqQuestions(response.data);
+        updateFaqs(response.data); // Actualiza las FAQs en el contexto
       })
       .catch(error => {
         console.error('There was an error fetching the FAQ questions!', error);
@@ -53,7 +55,7 @@ function Dashboard() {
       .then(response => {
         console.log('Question deleted successfully!', response);
         // Actualizar el estado inmediatamente después de la eliminación
-        setFaqQuestions(prevFaqQuestions => prevFaqQuestions.filter(question => question._id !== id));
+        updateFaqs((prevFaqs: Question[]) => prevFaqs.filter((faq: Question) => faq._id !== id));
       })
       .catch(error => {
         console.error('There was an error deleting the question!', error);
@@ -108,7 +110,7 @@ function Dashboard() {
 
       <div className="px-4 py-6">
         <QuestionsTable
-          questions={faqQuestions}
+          questions={faqs}
           onAdd={handleAddQuestion}
           onEdit={handleEditQuestion}
           onDelete={handleDeleteQuestion}
