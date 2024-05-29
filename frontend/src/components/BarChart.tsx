@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { useTranslation } from 'react-i18next';
 
 // Registro de componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -16,12 +17,14 @@ interface BarChartProps {
 }
 
 const BarChart: FC<BarChartProps> = ({ data }) => {
+  const { t } = useTranslation();
+
   // Configuración de los datos para el gráfico
   const chartData = {
     labels: data.map(d => d.question), // Etiquetas del eje X
     datasets: [
       {
-        label: 'Number of Asks', // Título de la barra de datos
+        label: t('number_of_asks'), // Título de la barra de datos
         data: data.map(d => d.count), // Datos numéricos para cada pregunta
         backgroundColor: 'bg-purple-700', // Color de las barras
         borderColor: 'rgba(153, 102, 255, 1)', // Color del borde de las barras
@@ -49,7 +52,7 @@ const BarChart: FC<BarChartProps> = ({ data }) => {
       },
       title: {
         display: true,
-        text: 'Most Asked Questions', // Título del gráfico
+        text: t('most_asked_questions'), // Título del gráfico
       }
     }
   };
@@ -59,7 +62,6 @@ const BarChart: FC<BarChartProps> = ({ data }) => {
       <Bar data={chartData} options={chartOptions} />
     </div>
   );
-
 };
 
 export default BarChart;

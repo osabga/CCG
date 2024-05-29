@@ -3,8 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from "../components/Header";
 import LoginImage from '../assets/aksonvady_crescent_sun_of_Peaceful_faerie_Landscape_Insane_and__c7c55c93-8978-4f0f-8fe4-8dec082cf5a7 1.png';
+import { useTranslation } from 'react-i18next';
 
 const EditQuestions = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const { question } = location.state || {};
@@ -31,15 +33,15 @@ const EditQuestions = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b">
+    <div className="flex flex-col min-h-screen bg-gradient-to-d from-gray-100 to-gray-300">
       <Header />
       <div className="flex items-center justify-center min-h-screen mt-11 pb-11">
         <div className="flex overflow-hidden max-w-5xl mx-auto rounded-lg shadow-xl">
           <img className="w-1/2 bg-cover bg-no-repeat bg-center rounded-l-lg" src={LoginImage} alt="Login Background" />
           <div className="w-1/2 bg-gray-900 bg-opacity-90 p-10 rounded-r-lg">
-            <h2 className="text-3xl text-white font-bold mb-6">Edit Question</h2>
+            <h2 className="text-3xl text-white font-bold mb-6">{t('edit_question')}</h2>
             <p className="text-gray-400 mb-8">
-              Please edit the details of the question.
+              {t('edit_question_details')}
             </p>
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
@@ -47,7 +49,7 @@ const EditQuestions = () => {
                   type="text"
                   value={questionText}
                   onChange={(e) => setQuestionText(e.target.value)}
-                  placeholder="Question"
+                  placeholder={t('question')}
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
@@ -56,16 +58,18 @@ const EditQuestions = () => {
                   type="text"
                   value={answerText}
                   onChange={(e) => setAnswerText(e.target.value)}
-                  placeholder="Answer"
+                  placeholder={t('answer')}
                   className="w-full p-4 bg-gray-700 text-white rounded focus:ring-2 focus:ring-purple-600 focus:outline-none"
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full mt-4 p-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded font-bold hover:opacity-90 transition-opacity duration-300"
-              >
-                Edit Question
-              </button>
+              <div className='flex justify-center'>
+                <button
+                  type="submit"
+                  className="admin-button relative z-10 px-6"
+                >
+                  {t('edit_question')}
+                </button>
+              </div>
             </form>
           </div>
         </div>
