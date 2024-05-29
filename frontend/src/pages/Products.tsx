@@ -7,7 +7,7 @@ import Image4 from '../assets/products4.png';
 
 const Products = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900">
+    <div className="flex flex-col min-h-screen bg-gradient-to-d from-gray-100 to-gray-300">
       <Header />
       <h1 className="text-center text-4xl font-bold text-purple-300 mt-9 mb-9">Our Products</h1>
       <div className="flex justify-center items-center space-x-[-7rem]">

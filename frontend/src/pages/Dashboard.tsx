@@ -8,6 +8,7 @@ import Widget from '../components/Widget';
 import QuestionsTable from '../components/QuestionsTable';
 import adminBackgroundImage from '../assets/AdminFoto.jpeg';
 import { useFaqs } from '../components/FaqContext';
+import { useTranslation } from 'react-i18next';
 
 interface Question {
   _id: string;
@@ -16,6 +17,7 @@ interface Question {
 }
 
 function Dashboard() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const getToken = () => localStorage.getItem('token');
   const headers = {
@@ -26,16 +28,16 @@ function Dashboard() {
   const { faqs, updateFaqs } = useFaqs();
 
   const [mostAskedQuestions, setMostAskedQuestions] = useState([
-    { question: "What is NEORIS?", count: 150 },
-    { question: "NEORIS Cloud Services", count: 120 },
-    { question: "Future of AI in business", count: 90 },
+    { question: t("what_is_neoris"), count: 150 },
+    { question: t("neoris_cloud_services"), count: 120 },
+    { question: t("future_of_ai_in_business"), count: 90 },
   ]);
 
   useEffect(() => {
     axios.get('https://neorisprueba.onrender.com/api/v1/faqs/', { headers })
       .then(response => {
-        console.log('Received FAQ questions:', response.data); // Registro de depuración
-        updateFaqs(response.data); // Actualiza las FAQs en el contexto
+        console.log('Received FAQ questions:', response.data);
+        updateFaqs(response.data);
       })
       .catch(error => {
         console.error('There was an error fetching the FAQ questions!', error);
@@ -43,18 +45,17 @@ function Dashboard() {
   }, []);
 
   const handleAddQuestion = () => {
-    navigate('/AddQuestion'); // Navigate to the NewQuestion page
+    navigate('/AddQuestion');
   };
 
-  const handleEditQuestion = (question: Question) => { // Define el tipo de question
-    navigate('/EditQuestions', { state: { question } }); // Navega al componente EditQuestions pasando la pregunta completa
+  const handleEditQuestion = (question: Question) => {
+    navigate('/EditQuestions', { state: { question } });
   };
 
-  const handleDeleteQuestion = (id: string) => { // Define el tipo de id
+  const handleDeleteQuestion = (id: string) => {
     axios.delete(`https://neorisprueba.onrender.com/api/v1/faq/${id}`, { headers })
       .then(response => {
         console.log('Question deleted successfully!', response);
-        // Actualizar el estado inmediatamente después de la eliminación
         updateFaqs((prevFaqs: Question[]) => prevFaqs.filter((faq: Question) => faq._id !== id));
       })
       .catch(error => {
@@ -78,15 +79,15 @@ function Dashboard() {
             }}
           >
             <h2 className="text-xl lg:text-3xl font-semibold">
-              Welcome back, Mark Johnson
+              {t('welcome_back')}, Admin!
             </h2>
             <p className="hidden md:block">
-              Glad to see you again! Ask me anything.
+              {t('glad_to_see_you_again')}
             </p>
-            <p className="block md:hidden">Welcome back!</p>
+            <p className="block md:hidden">{t('welcome_back')}</p>
             <button className="mt-2 lg:mt-4 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded"
               onClick={() => navigate('/ChatPage')}>
-              Tap to ask →
+              {t('tap_to_ask')} →
             </button>
           </div>
           <div className="w-full mt-4 mb-11">
@@ -98,11 +99,11 @@ function Dashboard() {
           <div className="bg-none rounded-lg shadow-md p-4 lg:p-6">
             <Chart />
             <h2 className="text-lg lg:text-xl font-semibold text-white m-4">
-              Active Users
+              {t('active_users')}
             </h2>
             <div className="flex flex-row gap-4">
-              <Widget count={572} label={"Usuarios"} />
-              <Widget count={72} label={"Preguntas"} />
+              <Widget count={572} label={t('users')} />
+              <Widget count={72} label={t('questions')} />
             </div>
           </div>
         </div>
