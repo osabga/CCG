@@ -7,9 +7,10 @@ import { useTranslation } from 'react-i18next';
 interface SidebarProps {
   onNewChat: () => void;
   history: Array<{ _id: string, question: string, answer?: string, userId: string }>;
+  setHistorySelected: (selectedHistory: { _id: string, question: string, answer?: string, userId: string }) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
+const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history, setHistorySelected }) => {
   const [userId, setUserId] = useState('');
   const navigate = useNavigate();
 
@@ -60,7 +61,9 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewChat, history }) => {
             {history.map((item) => (
               <li key={item._id}>
                 <div className="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-purple-800">
-                  <span className="flex-1 ml-3 whitespace-nowrap">{item.question}</span>
+                <button onClick={() => setHistorySelected(item)}>
+                    <span className="flex-1 ml-3 whitespace-nowrap">{item.question}</span>
+                  </button>
                 </div>
               </li>
             ))}

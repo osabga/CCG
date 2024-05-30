@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar';
 import Conversation from '../components/Conversation';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode'; // Asegúrate de importar jwtDecode correctamente
 
 const ChatPage = () => {
   const [inputValue, setInputValue] = useState('');
@@ -12,6 +12,7 @@ const ChatPage = () => {
   const [data, setData] = useState([] as any[]);
   const [history, setHistory] = useState([] as any[]);
   const [userId, setUserId] = useState('');
+  const [historySelected, setHistorySelected] = useState<{ _id: string, question: string, answer?: string, userId: string } | null>(null);
 
   const getToken = () => localStorage.getItem('token');
 
@@ -59,6 +60,13 @@ const ChatPage = () => {
     initializeUser();
   }, []);
 
+  useEffect(() => {
+    if (historySelected) {
+      setVisual(true);
+      setData([{ question: historySelected.question, answer: historySelected.answer }]);
+    }
+  }, [historySelected]);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
@@ -79,6 +87,7 @@ const ChatPage = () => {
   const handleNewChat = () => {
     setVisual(false);
     setData([]);
+    setHistorySelected(null);
   };
 
   useEffect(() => {
@@ -87,14 +96,14 @@ const ChatPage = () => {
 
   return (
     <div className="bg-gradient-to-d h-screen flex">
-      <Sidebar onNewChat={handleNewChat} history={history} />
+      <Sidebar onNewChat={handleNewChat} history={history} setHistorySelected={setHistorySelected} />
       <div className="flex flex-col w-full">
-      <Link to="/">
+        <Link to="/">
           <div className="flex flex-col items-center p-4 cursor-pointer">
             <img src={SpaceCatImage} alt="NeoBot" className="mb-4 h-[4rem]" /> {/* Replace with your image */}
             <h1 className="text-2xl text-white font-bold mb-8">Neora</h1>
           </div>
-      </Link>
+        </Link>
         {!visual && (
           <div className="flex-grow flex items-center justify-center">
             <div className="grid grid-cols-3 gap-4"> {/* Changed grid-cols-2 to grid-cols-3 */}
@@ -136,15 +145,15 @@ const ChatPage = () => {
               <button
                 className="bg-[#382c64] p-4 rounded-xl text-white shadow-md flex items-center justify-center"
                 style={{ height: '80px', width: '250px' }}
-                onClick={() => handleButtonClick('Recommendations')}
+                onClick={() => handleButtonClick('Ecommerce services')}
               >
-                <span>Ecommerce services </span>
+                <span>Ecommerce services</span>
               </button>
             </div>
           </div>
         )}
 
-{visual && (
+        {visual && (
           <div className="flex-grow overflow-auto mb-2 flex flex-col items-center">
             <div className="w-full max-w-5xl p-2"> {/* Changed max-w-5xl to max-w-6xl */}
               {data.map((item, index) => (
@@ -162,8 +171,8 @@ const ChatPage = () => {
             placeholder="Escribe tu pregunta..."
           />
           <button type="submit" className="text-white px-4 py-2 rounded-sm bg-[#382c64]">
-              Enviar
-            </button>
+            Enviar
+          </button>
         </form>
       </div>
     </div>

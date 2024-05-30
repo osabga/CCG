@@ -19,14 +19,14 @@ interface FormData {
 const Signup = () => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
-    firstName: 'Jaime',
-    lastName: 'Lara',
-    email: 'jaime@gmail.com',
-    password: '123',
-    password_confirm: '123',
-    age: '34',
-    country: 'Mexico',
-    state: 'Nuevo Leon'
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    password_confirm: '',
+    age: '',
+    country: '',
+    state: ''
   });
 
   const [error, setError] = useState<string | null>(null);
