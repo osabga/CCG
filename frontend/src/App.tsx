@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard';
 import Services from './pages/Services';
 import Products from './pages/Products';
 import { FaqProvider } from './components/FaqContext';
+import PrivateRoute from '../src/router/UserCheck'
 
 function App() {
   return (
@@ -22,11 +23,11 @@ function App() {
             <Route path='/Signup' element={<Signup />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/RestorePassword' element={<RestorePassword />} />
-            <Route path='/AddQuestion' element={<AddQuestion />} />
-            <Route path='/EditQuestions' element={<EditQuestions />} />
-            <Route path='/ChatPage' element={<ChatPage />} />
+            {<Route path='/AddQuestion' element={<PrivateRoute><AddQuestion /></PrivateRoute>} />}
+            {<Route path='/EditQuestions' element={<PrivateRoute><EditQuestions /></PrivateRoute>} />}
+            {<Route path='/ChatPage' element={<PrivateRoute><ChatPage /></PrivateRoute>} />}
             <Route path='/FrequentlyQuestions' element={<FrequentlyQuestions />} />
-            <Route path='/Dashboard' element={<Dashboard />} />
+            {<Route path='/Dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />}
             <Route path='/Services' element={<Services />} />
             <Route path='/Products' element={<Products />} />
           </Routes>
