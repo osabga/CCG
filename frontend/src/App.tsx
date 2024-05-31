@@ -23,11 +23,11 @@ function App() {
             <Route path='/Signup' element={<Signup />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/RestorePassword' element={<RestorePassword />} />
-            {<Route path='/AddQuestion' element={<PrivateRoute><AddQuestion /></PrivateRoute>} />}
-            {<Route path='/EditQuestions' element={<PrivateRoute><EditQuestions /></PrivateRoute>} />}
-            {<Route path='/ChatPage' element={<PrivateRoute><ChatPage /></PrivateRoute>} />}
+            {<Route path='/AddQuestion' element={<PrivateRoute tipeUser="admin"><AddQuestion /></PrivateRoute>} />}
+            {<Route path='/EditQuestions' element={<PrivateRoute tipeUser="admin"><EditQuestions /></PrivateRoute>} />}
+            {<Route path='/ChatPage' element={<PrivateRoute tipeUser=""><ChatPage /></PrivateRoute>} />}
             <Route path='/FrequentlyQuestions' element={<FrequentlyQuestions />} />
-            {<Route path='/Dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />}
+            {<Route path='/Dashboard' element={<PrivateRoute tipeUser="admin"><Dashboard /></PrivateRoute>} />}
             <Route path='/Services' element={<Services />} />
             <Route path='/Products' element={<Products />} />
           </Routes>
