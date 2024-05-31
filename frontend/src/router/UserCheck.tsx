@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 
-const PrivateRoute = ({ children, tipeUser }) => {
+interface PrivateRouteProps {
+  children: ReactNode;
+  tipeUser?: string;
+}
+
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, tipeUser }) => {
   const token = localStorage.getItem('token');
   
   if (!token) {

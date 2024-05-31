@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -27,11 +27,11 @@ function Dashboard() {
 
   const { faqs, updateFaqs } = useFaqs();
 
-  const [mostAskedQuestions, setMostAskedQuestions] = useState([
+  const mostAskedQuestions = [
     { question: t("what_is_neoris"), count: 150 },
     { question: t("neoris_cloud_services"), count: 120 },
     { question: t("future_of_ai_in_business"), count: 90 },
-  ]);
+  ];
 
   useEffect(() => {
     axios.get('https://neorisprueba.onrender.com/api/v1/faqs/', { headers })
