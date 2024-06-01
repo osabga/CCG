@@ -169,7 +169,7 @@ export default {
           margin: '0', // Elimina margen
           padding: '0', // Elimina padding
           overflow: 'hidden',
-          clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+          clipPath: 'polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)',
         },
         '.hexagon-image': {
           position: 'absolute',
