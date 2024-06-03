@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
 import Header from '../components/Header';
 import Chart from '../components/Chart';
 import BarChart from '../components/BarChart';
@@ -19,6 +20,10 @@ interface Question {
 function Dashboard() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [activeUsers, setActiveUsers] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(0);
+  const [adminName, setAdminName] = useState('Admin');
+
   const getToken = () => localStorage.getItem('token');
   const headers = {
     Authorization: `Bearer ${getToken()}`,
@@ -27,12 +32,19 @@ function Dashboard() {
 
   const { faqs, updateFaqs } = useFaqs();
 
-  const mostAskedQuestions = [
-    { question: t("what_is_neoris"), count: 150 },
-    { question: t("neoris_cloud_services"), count: 120 },
-    { question: t("future_of_ai_in_business"), count: 90 },
-  ];
+  useEffect(() => {
+    const initializeUser = async () => {
+      const token = getToken();
+      if (token) {
+        const decodedToken: any = jwtDecode(token);
+        setAdminName(decodedToken.name);
+      }
+    };
 
+    initializeUser();
+  }, []);
+
+  
   useEffect(() => {
     axios.get('https://neorisprueba.onrender.com/api/v1/faqs/', { headers })
       .then(response => {
@@ -41,6 +53,28 @@ function Dashboard() {
       })
       .catch(error => {
         console.error('There was an error fetching the FAQ questions!', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('https://neorisprueba.onrender.com/api/v1/active/users', { headers })
+      .then(response => {
+        console.log('Received active users:', response.data);
+        setActiveUsers(response.data.activeUsers);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the active users!', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('https://neorisprueba.onrender.com/api/v1/total/questions', { headers })
+      .then(response => {
+        console.log('Received total questions:', response.data);
+        setTotalQuestions(response.data.totalQuestions);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the total questions!', error);
       });
   }, []);
 
@@ -79,7 +113,7 @@ function Dashboard() {
             }}
           >
             <h2 className="text-xl lg:text-3xl font-semibold">
-              {t('welcome_back')}, Admin!
+              {t('welcome_back')}, {adminName}!
             </h2>
             <p className="hidden md:block">
               {t('glad_to_see_you_again')}
@@ -91,7 +125,7 @@ function Dashboard() {
             </button>
           </div>
           <div className="w-full mt-4 mb-11">
-            <BarChart data={mostAskedQuestions} />
+            <BarChart />
           </div>
         </div>
 
@@ -99,11 +133,11 @@ function Dashboard() {
           <div className="bg-none rounded-lg shadow-md p-4 lg:p-6">
             <Chart />
             <h2 className="text-lg lg:text-xl font-semibold text-white m-4">
-              {t('active_users')}
+              {t('stats')}
             </h2>
             <div className="flex flex-row gap-4">
-              <Widget count={572} label={t('users')} />
-              <Widget count={72} label={t('questions')} />
+              <Widget count={activeUsers} label={t('active_users')} />
+              <Widget count={totalQuestions} label={t('total_questions')} />
             </div>
           </div>
         </div>
