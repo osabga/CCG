@@ -49,7 +49,7 @@
   "welcome_back": "Bienvenido de nuevo",
   "glad_to_see_you_again": "¡Me alegra verte de nuevo! Pregúntame cualquier cosa.",
   "tap_to_ask": "Toca para preguntar",
-  "active_users": "Usuarios activos",
+  "active_users": "Usuarios Activos",
   "users": "Usuarios",
   "questions": "Preguntas",
   "questions_per_day": "Preguntas por Día",
@@ -60,14 +60,14 @@
   "friday": "Viernes",
   "saturday": "Sábado",
   "sunday": "Domingo",
-  "number_of_asks": "Número de Preguntas",
-  "most_asked_questions": "Preguntas Más Frecuentes",
+  "number_of_users": "Número de Usuarios",
+  "users_by_age_range": "Usuarios por Rango de Edad",
   "new_question": "Nueva Pregunta",
   "enter_question_details": "Por favor, introduce los detalles de la nueva pregunta.",
-  "question": "Pregunta",
+  "total_questions": "Preguntas Totales",
   "answer": "Respuesta",
   "add_question": "Agregar Pregunta",
   "edit_question": "Editar Pregunta",
   "edit_question_details": "Por favor, edita los detalles de la pregunta.",
-  "question": "Pregunta"
+  "stats": "Estadísticas"
 }

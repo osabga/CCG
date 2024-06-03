@@ -60,13 +60,14 @@
   "friday": "Friday",
   "saturday": "Saturday",
   "sunday": "Sunday",
-  "number_of_asks": "Number of Asks",
-  "most_asked_questions": "Most Asked Questions",
+  "number_of_users": "Number of Users",
+  "users_by_age_range": "Users by Age Range",
   "new_question": "New Question",
   "enter_question_details": "Please enter the details of the new question.",
-  "question": "Question",
+  "total_questions": "Total Questions",
   "answer": "Answer",
   "add_question": "Add Question",
   "edit_question": "Edit Question",
-  "edit_question_details": "Please edit the details of the question."
+  "edit_question_details": "Please edit the details of the question.",
+  "stats": "Stats"
 }
