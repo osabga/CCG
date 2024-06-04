@@ -69,5 +69,43 @@
   "add_question": "Add Question",
   "edit_question": "Edit Question",
   "edit_question_details": "Please edit the details of the question.",
-  "stats": "Stats"
+  "stats": "Stats",
+  "Products": {
+    "Title": "Our Products",
+    "Product1": {
+      "Name": "Strategy and Operations",
+      "Description": "Optimization of business processes through integrated strategies that foster efficiency and sustainable growth."
+    },
+    "Product2": {
+      "Name": "Digital Architecture",
+      "Description": "Design and implementation of advanced technological infrastructures supporting digital transformation and innovation."
+    },
+    "Product3": {
+      "Name": "Digital Enterprise Solutions",
+      "Description": "Comprehensive solutions that transform business operations, enhancing customer interaction and internal management."
+    },
+    "Product4": {
+      "Name": "Innovation Labs",
+      "Description": "Creative spaces where new ideas are conceptualized and developed to keep companies at the forefront of innovation."
+    }
+  },
+  "Services": {
+    "Title": "Our Services",
+    "Service1": {
+      "Name": "Legacy Transformation",
+      "Description": "Renovation and modernization of legacy systems to increase business agility and operational efficiency."
+    },
+    "Service2": {
+      "Name": "Data, Analytics & AI",
+      "Description": "Advanced data analysis services and AI applications designed to drive data-based business decisions."
+    },
+    "Service3": {
+      "Name": "NEORIS Cloud Services",
+      "Description": "Customized cloud services offering scalable, secure, and cost-efficient solutions for business management."
+    },
+    "Service4": {
+      "Name": "Smart E-commerce",
+      "Description": "Smart e-commerce solutions that enhance online shopping experience through cutting-edge technology and personalization."
+    }
+  }
 }

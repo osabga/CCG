@@ -69,5 +69,43 @@
   "add_question": "Agregar Pregunta",
   "edit_question": "Editar Pregunta",
   "edit_question_details": "Por favor, edita los detalles de la pregunta.",
-  "stats": "Estadísticas"
+  "stats": "Estadísticas",
+  "Products": {
+    "Title": "Nuestros Productos",
+    "Product1": {
+      "Name": "Estrategia y Operaciones",
+      "Description": "Optimización de procesos empresariales a través de estrategias integradas que fomentan la eficiencia y el crecimiento sostenible."
+    },
+    "Product2": {
+      "Name": "Arquitectura Digital",
+      "Description": "Diseño e implementación de infraestructuras tecnológicas avanzadas que soportan la transformación y la innovación digital."
+    },
+    "Product3": {
+      "Name": "Soluciones Empresariales Digitales",
+      "Description": "Soluciones integrales que transforman las operaciones de negocios, mejorando la interacción con el cliente y la gestión interna."
+    },
+    "Product4": {
+      "Name": "Laboratorios de Innovación",
+      "Description": "Espacios creativos donde se conceptualizan y desarrollan nuevas ideas para mantener a las empresas a la vanguardia de la innovación."
+    }
+  },
+  "Services": {
+    "Title": "Nuestros Servicios",
+    "Service1": {
+      "Name": "Transformación de Legado",
+      "Description": "Renovación y modernización de sistemas heredados para aumentar la agilidad y eficiencia operativa de las empresas."
+    },
+    "Service2": {
+      "Name": "Datos, Análisis e IA",
+      "Description": "Servicios avanzados de análisis de datos y aplicaciones de inteligencia artificial diseñados para impulsar decisiones empresariales basadas en datos."
+    },
+    "Service3": {
+      "Name": "Servicios en la Nube NEORIS",
+      "Description": "Servicios en la nube personalizados que ofrecen soluciones escalables, seguras y coste-eficientes para la gestión empresarial."
+    },
+    "Service4": {
+      "Name": "Comercio Electrónico Inteligente",
+      "Description": "Soluciones de comercio electrónico inteligente que mejoran la experiencia de compra en línea mediante tecnología de punta y personalización."
+    }
+  }
 }
