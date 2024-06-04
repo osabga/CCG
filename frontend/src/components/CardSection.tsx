@@ -3,6 +3,7 @@ import Img1 from '../assets/img1.png';
 import Img2 from '../assets/img2.png';
 import Img3 from '../assets/img3.png';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const CardSection = () => {
   const { t } = useTranslation();
@@ -12,19 +13,22 @@ const CardSection = () => {
       title: t('products_title'),
       description: t('products_description'),
       imgSrc: Img1,
-      buttonText: t('learn_more')
+      buttonText: t('learn_more'),
+      link: '/Products'
     },
     {
       title: t('services_title'),
       description: t('services_description'),
       imgSrc: Img2,
-      buttonText: t('explore_now')
+      buttonText: t('explore_now'),
+      link: '/Services'
     },
     {
       title: t('faqs_title'),
       description: t('faqs_description'),
       imgSrc: Img3,
-      buttonText: t('view_faqs')
+      buttonText: t('view_faqs'),
+      link: '/FrequentlyQuestions'
     }
   ];
 
@@ -36,12 +40,14 @@ const CardSection = () => {
           {cardInfo.map((card, index) => (
             <div key={index} className="p-6 m-4 custom-blur-background rounded-lg shadow-md space-y-4 w-full md:w-1/4">
               <img src={card.imgSrc} alt={card.title} className="rounded-lg mb-4" />
-                <div className='custom-line'/>
+              <div className='custom-line'/>
               <h3 className="text-xl text-white">{card.title}</h3>
               <p className="text-gray-300 text-sm">{card.description}</p>
-              <button className="custom-button text-white py-2 px-4 rounded hover:bg-purple-800 transition-colors duration-300">
-                {card.buttonText}
-              </button>
+              <Link to={card.link}>
+                <button className="custom-button text-white py-2 px-4 rounded hover:bg-purple-800 transition-colors duration-300">
+                  {card.buttonText}
+                </button>
+              </Link>
             </div>
           ))}
         </div>
