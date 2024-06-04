@@ -12,7 +12,7 @@ const Products = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-d from-gray-100 to-gray-300">
       <Header />
-      <h1 className="text-center text-4xl font-bold text-purple-300 mt-12 mb-2">{t('Products.Title')}</h1>
+      <h1 className="text-center text-4xl font-bold text-purple-300 mt-12 ">{t('Products.Title')}</h1>
       <div className="flex justify-center items-center space-x-[-4rem]">
         <div className="flex flex-col items-center">
           <div className="hexagon relative mb-6" style={{ top: '0' }}>
@@ -27,7 +27,7 @@ const Products = () => {
           <div className="hexagon relative mb-6" style={{ top: '8vw' }}>
             <img src={Image2} alt={t('Products.Product2.Name')} className="hexagon-image" />
           </div>
-          <div className="text-center mt-20">
+          <div className="text-center mt-[7rem]">
             <h2 className="text-sm font-bold text-white">{t('Products.Product2.Name')}</h2>
             <p className="text-xs text-gray-400">{t('Products.Product2.Description')}</p>
           </div>
@@ -45,7 +45,7 @@ const Products = () => {
           <div className="hexagon relative mb-6" style={{ top: '8vw' }}>
             <img src={Image4} alt={t('Products.Product4.Name')} className="hexagon-image" />
           </div>
-          <div className="text-center mt-20">
+          <div className="text-center mt-[7rem]">
             <h2 className="text-sm font-bold text-white">{t('Products.Product4.Name')}</h2>
             <p className="text-xs text-gray-400">{t('Products.Product4.Description')}</p>
           </div>
