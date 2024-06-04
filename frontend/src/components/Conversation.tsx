@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Conversation = ({ question, answer }: { question: string, answer: string }) => {
   return (

@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from '../components/Header';
 import SpaceCatImage from '../assets/SpaceCat.png';
 import CardSection from '../components/CardSection';

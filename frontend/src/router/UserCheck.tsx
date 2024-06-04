@@ -7,6 +7,12 @@ interface PrivateRouteProps {
   tipeUser?: string;
 }
 
+interface DecodedToken {
+  role: string;
+  exp: number;
+  // otras propiedades que tu token pueda tener
+}
+
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, tipeUser }) => {
   const token = localStorage.getItem('token');
   
@@ -15,9 +21,9 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, tipeUser }) => {
   }
 
   try {
-    const decodedToken = jwtDecode(token);
+    const decodedToken = jwtDecode<DecodedToken>(token);
     if (!tipeUser || decodedToken.role === tipeUser) {
-      return children;
+      return children as React.ReactElement;
     } else {
       return <Navigate to="/login" />;
     }
@@ -28,3 +34,4 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, tipeUser }) => {
 };
 
 export default PrivateRoute;
+

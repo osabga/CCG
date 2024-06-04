@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "../components/Header";
@@ -22,7 +23,7 @@ const Login = () => {
     const { name, value } = event.target;
     setLoginData({ ...loginData, [name]: value });
   };
-
+console.log(userRole)
   useEffect(() => {
     const token = localStorage.getItem('token');
     console.log(token)

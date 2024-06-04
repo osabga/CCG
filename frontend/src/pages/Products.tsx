@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from '../components/Header';
 import Image1 from '../assets/products1.png';

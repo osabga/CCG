@@ -1,9 +1,6 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from '../components/Header';
-import CardServices from '../components/CardServices';
 
-import Image1 from '../assets/producto1.jpg';
 import Image2 from '../assets/producto2.jpg';
 import Image3 from '../assets/producto3.jpg';
 import Image4 from '../assets/producto4.jpg';
