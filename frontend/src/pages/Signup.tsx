@@ -81,8 +81,8 @@ const Signup = () => {
       <Header />
       <div className="flex items-center justify-center min-h-screen mt-11 pb-11">
         <div className="flex overflow-hidden max-w-5xl mx-auto rounded-lg shadow-xl">
-          <img className="w-1/2 bg-cover bg-no-repeat bg-center rounded-l-lg" src={login} alt="Login Background" />
-          <div className="w-1/2 bg-gray-900 bg-opacity-90 p-10 rounded-r-lg">
+        <img className="hidden lg:block lg:object-cover lg:w-1/2 lg:rounded-l-lg" src={login} alt="Login Background" />
+          <div className="lg:w-1/2 bg-gray-900 bg-opacity-90 p-10 rounded-r-lg">
             <h2 className="text-3xl text-white font-bold mb-6">{t('signup_title')}</h2>
             <p className="text-gray-400 mb-8">
               {t('signup_subtitle')}
