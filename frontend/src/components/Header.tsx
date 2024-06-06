@@ -61,13 +61,13 @@ const Header: React.FC = () => {
                     <div className={`${isMenuOpen ? "flex" : "hidden"} justify-between items-center w-full lg:flex lg:w-auto lg:order-1 lg:justify-end`} id="mobile-menu-2">
                         <ul className="flex flex-col mt-4 font-light lg:flex-row lg:space-x-8 lg:mt-0 text-m lg:items-center">
                             <li>
-                                <a href="/Products" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">{t('products')}</a>
+                                <Link to="/Products" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">{t('products')}</Link>
                             </li>
                             <li>
-                                <a href="/Services" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">{t('services')}</a>
+                                <Link to="/Services" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">{t('services')}</Link>
                             </li>
                             <li>
-                                <a href="/FrequentlyQuestions" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">{t('faqs')}</a>
+                                <Link to="/FrequentlyQuestions" className="flex items-center py-3 pr-4 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">{t('faqs')}</Link>
                             </li>
                             <li className="relative" onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
                                 <button className="flex items-center py-3 pr-3 pl-3 text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">
