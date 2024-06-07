@@ -162,7 +162,7 @@ const ChatPage = () => {
             </div>
           </div>
         )}
-        <form onSubmit={handleClick} className="flex justify-between mt-[4rem] mb-[-5rem]">
+        <form onSubmit={handleClick} className="flex justify-between mt-4 p-4 bg-gray-800 rounded-md">
           <input
             type="text"
             value={inputValue}
