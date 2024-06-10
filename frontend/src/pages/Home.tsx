@@ -10,16 +10,18 @@ const Home = () => {
   return (
     <div className='bg-gradient-to-F'>
       <Header />
-      <section className="bg-gradient-to-F text-white flex flex-col lg:flex-row justify-between items-center p-10 lg:space-x-72 mb-[-10rem]">
-        <div className="space-y-4 w-full lg:w-[50vw] lg:mt-[-15rem] mb-10 lg:mb-0">
+      <section className="bg-gradient-to-F text-white flex flex-col lg:flex-row justify-between items-center p-10 lg:space-x-72 mb-[5rem] lg:mb-[-10rem]">
+        <div className=" w-full lg:w-[50vw] lg:mt-[-15rem] lg:mb-0">
           <h1 className="hero-title">{t('welcome')}</h1>
+          <img className=" h-[40vh] lg:hidden mb-4 mt-[-100px]" src={SpaceCatImage} alt="Space Cat" />
+
           <p className="text-[1rem] sm:text-[0.875rem]">
             {t('introduction')}
           </p>
-          <div className="relative flex items-center">
+          <div className="relative flex items-center mt-4 ">
             <div className="hero-blur absolute inset-0 rounded-full" />
             <Link to='/Signup'>
-              <button className="admin-button relative z-10 px-6">
+              <button className="admin-button relative z-10 px-6 ">
                 {t('get_started')}
               </button>
             </Link>

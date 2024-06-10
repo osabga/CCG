@@ -39,7 +39,7 @@ const CardSection = () => {
           {cardInfo.map((card, index) => (
             <div key={index} className="p-6 m-4 custom-blur-background rounded-lg shadow-md space-y-4 w-full md:w-1/4">
               <img src={card.imgSrc} alt={card.title} className="rounded-lg mb-4" />
-              <div className='custom-line'/>
+              <div className='custom-line mt-[280px] lg:mt-0'/>
               <h3 className="text-xl text-white">{card.title}</h3>
               <p className="text-gray-300 text-sm">{card.description}</p>
               <Link to={card.link}>
